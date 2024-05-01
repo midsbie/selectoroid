@@ -1,0 +1,23 @@
+{
+  "name": "power-select",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Easy navigation through nested categories and sub-categories, offering users a clear and intuitive interface for complex selections.",
+  "author": "Miguel Guedes <miguel@softgeist.com>",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.softgeist.com:oss/power-select.git"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "esbuild": "^0.20.1",
+    "lerna": "^8.1.2",
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3",
+    "typescript-eslint": "^7.1.0"
+  }
+}
