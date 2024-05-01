@@ -26,7 +26,7 @@ export function SelectoroidContext({
       renderOptionList: renderOptionList ?? defaultRenderOptionList,
       renderOption: renderOption ?? defaultRenderOption,
     }),
-    [isOpen, setOpen, renderOptionList, renderOption],
+    [isOpen, setOpen, renderOptionContainer, renderOptionList, renderOption]
   );
 
   return <Context.Provider value={ctx}>{children}</Context.Provider>;
