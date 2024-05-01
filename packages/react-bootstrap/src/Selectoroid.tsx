@@ -1,11 +1,10 @@
+import { Option, Options, SelectedOption } from "@selectoroid/model";
+import { SelectoroidContext } from "@selectoroid/react";
 import * as React from "react";
 import { Col, ListGroup, ListGroupItem, Row } from "react-bootstrap";
 
-import { Option, Options, SelectedOption } from "@power-select/model";
-import { PowerSelectContext } from "@power-select/react";
-
 import { Badge } from "./Badge";
-import { ContextualizedPowerSelect } from "./ContextualizedPowerSelect";
+import { ContextualizedSelectoroid } from "./ContextualizedSelectoroid";
 import { ExpandedIcon } from "./ExpandedIcon";
 
 interface Props extends React.PropsWithChildren {
@@ -13,17 +12,17 @@ interface Props extends React.PropsWithChildren {
   onSelect: (opt: SelectedOption) => void;
 }
 
-export function PowerSelect({ options, onSelect, children }: Props) {
+export function Selectoroid({ options, onSelect, children }: Props) {
   return (
-    <PowerSelectContext
+    <SelectoroidContext
       renderOptionContainer={renderOptionContainer}
       renderOptionList={renderOptionList}
       renderOption={renderOption}
     >
-      <ContextualizedPowerSelect options={options} onSelect={onSelect}>
+      <ContextualizedSelectoroid options={options} onSelect={onSelect}>
         {children}
-      </ContextualizedPowerSelect>
-    </PowerSelectContext>
+      </ContextualizedSelectoroid>
+    </SelectoroidContext>
   );
 }
 

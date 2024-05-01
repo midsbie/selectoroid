@@ -9,7 +9,7 @@ import {
 
 interface Props extends React.PropsWithChildren<Partial<ContextProps>> {}
 
-export function PowerSelectContext({
+export function SelectoroidContext({
   renderOptionContainer,
   renderOptionList,
   renderOption,

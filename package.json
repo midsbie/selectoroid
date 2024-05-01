@@ -1,5 +1,5 @@
 {
-  "name": "power-select",
+  "name": "selectoroid",
   "private": true,
   "version": "0.0.0",
   "description": "Easy navigation through nested categories and sub-categories, offering users a clear and intuitive interface for complex selections.",
@@ -10,7 +10,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@gitlab.softgeist.com:oss/power-select.git"
+    "url": "git@gitlab.softgeist.com:oss/selectoroid.git"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",

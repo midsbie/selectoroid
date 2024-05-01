@@ -1,1 +1,1 @@
-export * from "./PowerSelect";
+export * from "./Selectoroid";

@@ -1,6 +1,5 @@
+import { Option } from "@selectoroid/model";
 import * as React from "react";
-
-import { Option } from "@power-select/model";
 
 interface Props {
   expanded?: boolean;

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Dict, Option } from "@power-select/model";
+import { Dict, Option } from "@selectoroid/model";
 
 export interface ContextProps {
   renderOptionContainer(props: React.PropsWithChildren): React.ReactNode;

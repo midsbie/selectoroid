@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import {
   Option,
   OptionValue,
@@ -7,8 +5,9 @@ import {
   SelectedOption,
   determineExpandedOptions,
   getOptionLeaf,
-} from "@power-select/model";
-import { OptionList } from "@power-select/react";
+} from "@selectoroid/model";
+import { OptionList } from "@selectoroid/react";
+import * as React from "react";
 
 import { Context } from "./context";
 
@@ -17,7 +16,7 @@ interface Props {
   onSelect: (opt: SelectedOption) => void;
 }
 
-export function PowerSelect({ options, onSelect }: Props) {
+export function Selectoroid({ options, onSelect }: Props) {
   const { renderOptionContainer, renderOptionList } = React.useContext(Context);
 
   const [expanded, setExpanded] = React.useState<OptionValue[]>(() => {
@@ -30,7 +29,7 @@ export function PowerSelect({ options, onSelect }: Props) {
 
   const handleClick = React.useCallback(
     (_ev: React.MouseEvent, opt: SelectedOption) => onSelect(opt),
-    [onSelect]
+    [onSelect],
   );
 
   const handleSetActive = React.useCallback(
@@ -41,7 +40,7 @@ export function PowerSelect({ options, onSelect }: Props) {
         return av;
       });
     },
-    [setExpanded]
+    [setExpanded],
   );
 
   const body = [];
@@ -61,12 +60,12 @@ export function PowerSelect({ options, onSelect }: Props) {
             />
           ),
         },
-        i
-      )
+        i,
+      ),
     );
 
     topt = getOptionLeaf(topt, expanded[i]);
   }
 
-  return renderOptionContainer({ className: "power-select", children: body });
+  return renderOptionContainer({ className: "selectoroid", children: body });
 }

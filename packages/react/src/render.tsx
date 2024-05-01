@@ -1,6 +1,5 @@
+import { Option } from "@selectoroid/model";
 import * as React from "react";
-
-import { Option } from "@power-select/model";
 
 import { ExpandedIcon } from "./ExpandedIcon";
 

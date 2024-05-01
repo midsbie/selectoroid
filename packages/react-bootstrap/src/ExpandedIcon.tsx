@@ -1,7 +1,6 @@
+import { Option, shouldShowExpandedIcon } from "@selectoroid/model";
 import * as React from "react";
 import { ChevronRight } from "react-bootstrap-icons";
-
-import { Option, shouldShowExpandedIcon } from "@power-select/model";
 
 interface Props {
   expanded?: boolean;

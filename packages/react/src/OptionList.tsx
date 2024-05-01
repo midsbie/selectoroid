@@ -1,8 +1,7 @@
+import { OptionValue, Options, SelectedOption, countSelected } from "@selectoroid/model";
+import { Context } from "@selectoroid/react";
 import classNames from "classnames";
 import * as React from "react";
-
-import { OptionValue, Options, SelectedOption, countSelected } from "@power-select/model";
-import { Context } from "@power-select/react";
 
 interface Props {
   depth: number;
@@ -19,7 +18,7 @@ export function OptionList({ depth, expandedOption, options, onClick, onMouseOve
     (ev: React.MouseEvent, opt: SelectedOption) => {
       if (opt.children != null && opt.children.length > 0) onMouseOver(ev, opt);
     },
-    [onMouseOver]
+    [onMouseOver],
   );
 
   return options.map((opt) => {
@@ -35,7 +34,7 @@ export function OptionList({ depth, expandedOption, options, onClick, onMouseOve
       },
       expanded,
       countSelected(opt),
-      opt
+      opt,
     );
   });
 }

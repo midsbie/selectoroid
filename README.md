@@ -13,7 +13,7 @@ extensible React component for creating multi-select dropdown menus.
 
 ## Getting Started
 
-This guide will help you set up and use the power-select library in your project.
+This guide will help you set up and use the selectoroid library in your project.
 
 ### Installation
 
@@ -28,8 +28,8 @@ yarn install
 Import the required components and types from the library:
 
 ```jsx
-import { Selectoroid } from '@power-select/react-bootstrap';
-import { Option, Options, SelectedOption } from '@power-select/model';
+import { Selectoroid } from '@selectoroid/react-bootstrap';
+import { Option, Options, SelectedOption } from '@selectoroid/model';
 ```
 
 Define your options and selection handler:

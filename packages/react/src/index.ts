@@ -3,6 +3,6 @@ export * from "./context";
 export * from "./MouseDownSink";
 
 export * from "./OptionList";
-export * from "./PowerSelect";
-export * from "./PowerSelectContext";
+export * from "./Selectoroid";
+export * from "./SelectoroidContext";
 
