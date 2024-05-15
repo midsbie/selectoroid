@@ -8,7 +8,7 @@
   "workspaces": ["packages/*"],
   "repository": {
     "type": "git",
-    "url": "git@gitlab.softgeist.com:oss/selectoroid.git"
+    "url": "git@github.com:midsbie/selectoroid.git"
   },
   "scripts": {
     "check": "set -e; for i in code lint fmt; do yarn run check:$i; done; echo 'check: PASS'",
