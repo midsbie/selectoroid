@@ -1,7 +1,8 @@
-# selectoroid
+# Selectoroid
 
-A work in progress in the very early stages of development that intends to be a powerful and
-extensible React component for creating multi-select dropdown menus.
+A work in progress in the very early stages of development, Selectoroid is a powerful and extensible
+React component offering users easy navigation through nested categories and sub-categories,
+enabling complex selections.
 
 ## Features
 
@@ -13,7 +14,7 @@ extensible React component for creating multi-select dropdown menus.
 
 ## Getting Started
 
-This guide will help you set up and use the selectoroid library in your project.
+This guide will help you set up and use the Selectoroid library in your project.
 
 ### Installation
 
