@@ -18,7 +18,7 @@ export function useMouseDownGlobalHandler({ disabled, onDown, onUp }: Options = 
         // nop
       }
     },
-    [onDown]
+    [onDown],
   );
 
   const handleMouseUp = React.useCallback(
@@ -30,21 +30,22 @@ export function useMouseDownGlobalHandler({ disabled, onDown, onUp }: Options = 
         // nop
       }
     },
-    [onUp]
+    [onUp],
   );
 
-  React.useEffect((): any => {
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  React.useEffect(() => {
     if (disabled) return;
 
     window.addEventListener("mousedown", handleMouseDown as any);
     window.addEventListener("mouseup", handleMouseUp as any);
 
-    /* eslint-disable-next-line consistent-return */
     return () => {
       window.removeEventListener("mouseup", handleMouseUp as any);
       window.removeEventListener("mousedown", handleMouseDown as any);
     };
   }, [disabled, handleMouseDown, handleMouseUp]);
+  /* eslint-enable @typescript-eslint/no-explicit-any */
 
   return down;
 }

@@ -1,7 +1,7 @@
-import { Option } from "@selectoroid/model";
 import * as React from "react";
 
 import { ExpandedIcon } from "./ExpandedIcon";
+import { RenderOptionAttrs, RenderOptionProps } from "./context";
 
 export function defaultRenderOptionContainer({ children, ...props }: React.PropsWithChildren<any>) {
   return <div {...props}>{children}</div>;
@@ -9,7 +9,7 @@ export function defaultRenderOptionContainer({ children, ...props }: React.Props
 
 export function defaultRenderOptionList(
   { children, ...props }: React.PropsWithChildren,
-  index: number,
+  index: number
 ) {
   return (
     <div key={index} {...props} className="rcs-col">
@@ -20,20 +20,16 @@ export function defaultRenderOptionList(
   );
 }
 
-export function defaultRenderOption(
-  props: React.PropsWithChildren,
-  expanded: boolean,
-  selections: number,
-  option: Option,
-) {
+export function defaultRenderOption(attrs: RenderOptionAttrs, props: RenderOptionProps) {
+  const { option } = attrs;
   return (
     <li key={`rcs-${option.value}`} {...props}>
       <span className="rcs-label">
         {option.label}
-        <span className="rcs-badge">{selections}</span>
+        <span className="rcs-badge">{attrs.childSelectionCount}</span>
       </span>
 
-      <ExpandedIcon expanded={expanded} option={option} />
+      <ExpandedIcon expanded={attrs.isExpanded} option={option} />
     </li>
   );
 }

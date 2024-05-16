@@ -1,16 +1,12 @@
 import * as React from "react";
 import { OverlayTrigger, Popover, PopoverBody } from "react-bootstrap";
 
-import { Options, SelectedOption } from "@selectoroid/model";
 import { Context, MouseDownSink, Selectoroid } from "@selectoroid/react";
 import { useMouseDownGlobalHandler } from "@selectoroid/react-hooks";
 
-interface Props extends React.PropsWithChildren {
-  options: Options;
-  onSelect: (opt: SelectedOption) => void;
-}
+interface Props extends React.PropsWithChildren {}
 
-export function ContextualizedSelectoroid({ options, onSelect, children }: Props) {
+export function SelectoroidPopover({ children }: Props) {
   const { isOpen, setOpen } = React.useContext(Context);
   const down = useMouseDownGlobalHandler();
 
@@ -34,7 +30,7 @@ export function ContextualizedSelectoroid({ options, onSelect, children }: Props
           <Popover className="selectoroid-picker-popover">
             <PopoverBody>
               <MouseDownSink>
-                <Selectoroid options={options} onSelect={onSelect} />
+                <Selectoroid />
               </MouseDownSink>
             </PopoverBody>
           </Popover>

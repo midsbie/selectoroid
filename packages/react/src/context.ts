@@ -1,19 +1,70 @@
 import * as React from "react";
 
-import { Dict, Option } from "@selectoroid/model";
+import { Option, OptionValue, SelectedOption } from "@selectoroid/model";
 
-export interface ContextProps {
-  renderOptionContainer(props: React.PropsWithChildren): React.ReactNode;
-  renderOptionList(props: React.PropsWithChildren, index: number): React.ReactNode;
-  renderOption(props: Dict, expanded: boolean, selections: number, option: Option): React.ReactNode;
+import { FilterFunction } from "./functions";
+
+interface ChangeContextAdd {
+  type: "add";
+  option: SelectedOption;
 }
 
-export interface ContextValue {
-  isOpen: boolean;
-  setOpen(open?: boolean): void;
+interface ChangeContextRemove {
+  type: "remove";
+  option: Option;
+}
+
+interface ChangeContextClear {
+  type: "clear";
+}
+
+export type ChangeContext = ChangeContextAdd | ChangeContextRemove | ChangeContextClear;
+
+interface CommonProps {
+  options: Readonly<Option[]>;
+  value: Readonly<OptionValue[]>;
+  onChange: (next: OptionValue[], context: ChangeContext) => void;
+}
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export interface ContextProps extends CommonProps {
+  multi?: boolean;
+  filter?: string;
+  filterFunction?: FilterFunction;
+  renderOptionContainer?(props: React.PropsWithChildren<any>): React.ReactNode;
+  renderOptionList?(props: React.PropsWithChildren<any>, index: number): React.ReactNode;
+  renderOption?(attrs: RenderOptionAttrs, props: RenderOptionProps): React.ReactNode;
+}
+/* eslint-enable @typescript-eslint/no-explicit-any */
+
+export interface RenderOptionAttrs {
+  isSelected: boolean;
+  isExpanded: boolean;
+  childSelectionCount: number;
+  option: Option;
+}
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export interface RenderOptionProps extends React.HTMLAttributes<any> {}
+
+export interface ContextValue extends CommonProps {
   renderOptionContainer(props: React.PropsWithChildren<any>): React.ReactNode;
   renderOptionList(props: React.PropsWithChildren<any>, index: number): React.ReactNode;
-  renderOption(props: Dict, expanded: boolean, selections: number, option: Option): React.ReactNode;
+  renderOption(attrs: RenderOptionAttrs, props: RenderOptionProps): React.ReactNode;
+  filterFunction: FilterFunction;
+
+  valueSet: Readonly<Set<OptionValue>>;
+  filteredOptions: Readonly<Option[]>;
+  filter: string;
+  setFilter: React.Dispatch<React.SetStateAction<string>>;
+  maxDepth: number;
+  isOpen: boolean;
+  isMulti: boolean;
+  setOpen(open?: boolean): void;
+  toggleValue(option: Option): [OptionValue[], boolean];
+  addValue(option: Option): [OptionValue[], boolean];
+  removeValue(option: Option): [OptionValue[], boolean];
 }
 
 export const Context = React.createContext<ContextValue>(null as any);
+/* eslint-enable @typescript-eslint/no-explicit-any */

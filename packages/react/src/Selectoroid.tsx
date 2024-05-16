@@ -1,35 +1,43 @@
+import * as React from "react";
+
 import {
   Option,
   OptionValue,
-  Options,
   SelectedOption,
   determineExpandedOptions,
   getOptionLeaf,
 } from "@selectoroid/model";
 import { OptionList } from "@selectoroid/react";
-import * as React from "react";
 
 import { Context } from "./context";
 
-interface Props {
-  options: Options;
-  onSelect: (opt: SelectedOption) => void;
-}
-
-export function Selectoroid({ options, onSelect }: Props) {
-  const { renderOptionContainer, renderOptionList } = React.useContext(Context);
+export function Selectoroid() {
+  const {
+    filteredOptions,
+    value,
+    valueSet,
+    toggleValue,
+    maxDepth,
+    isMulti,
+    setOpen,
+    onChange,
+    renderOptionContainer,
+    renderOptionList,
+  } = React.useContext(Context);
 
   const [expanded, setExpanded] = React.useState<OptionValue[]>(() => {
-    const r = determineExpandedOptions(options);
-    if (r.length > 0) return r;
-
-    for (const opt of options) return [opt.value];
-    return [];
+    const r = determineExpandedOptions(filteredOptions, valueSet);
+    return r.length > 0 ? r : [filteredOptions[0]?.value].filter(Boolean);
   });
 
   const handleClick = React.useCallback(
-    (_ev: React.MouseEvent, opt: SelectedOption) => onSelect(opt),
-    [onSelect],
+    (_ev: React.MouseEvent, option: SelectedOption) => {
+      if (!isMulti) setOpen(false);
+
+      const [next, added] = toggleValue(option);
+      onChange(next, { type: added ? "add" : "remove", option });
+    },
+    [value, isMulti, setOpen, onChange],
   );
 
   const handleSetActive = React.useCallback(
@@ -43,9 +51,9 @@ export function Selectoroid({ options, onSelect }: Props) {
     [setExpanded],
   );
 
-  const body = [];
-  let topt = options;
-  for (let i = 0, l = Math.max(expanded.length, 2); i < l; ++i) {
+  const body: React.ReactNode[] = [];
+  let topt = filteredOptions;
+  for (let i = 0; i < maxDepth; ++i) {
     body.push(
       renderOptionList(
         {
