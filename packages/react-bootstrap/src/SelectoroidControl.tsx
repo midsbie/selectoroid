@@ -10,7 +10,7 @@ interface Props extends Omit<BaseProps, OmitProps> {
   ariaLabel?: string;
 }
 
-export function SelectoroidControl({ placeholder = "Please select", ...props }: Props) {
+export function SelectoroidControl({ placeholder = "Please select...", ...props }: Props) {
   const { isMultiple, options, value, valueSet, removeValue, setFilter, onChange } =
     React.useContext(Context);
   const tags = React.useMemo(() => collectSelectedOptions(options, valueSet), [options, valueSet]);
