@@ -18,7 +18,7 @@ export function Selectoroid() {
     valueSet,
     toggleValue,
     maxDepth,
-    isMulti,
+    isMultiple,
     setOpen,
     onChange,
     renderOptionContainer,
@@ -32,12 +32,12 @@ export function Selectoroid() {
 
   const handleClick = React.useCallback(
     (_ev: React.MouseEvent, option: SelectedOption) => {
-      if (!isMulti) setOpen(false);
+      if (!isMultiple) setOpen(false);
 
       const [next, added] = toggleValue(option);
       onChange(next, { type: added ? "add" : "remove", option });
     },
-    [value, isMulti, setOpen, onChange],
+    [value, isMultiple, setOpen, onChange],
   );
 
   const handleSetActive = React.useCallback(

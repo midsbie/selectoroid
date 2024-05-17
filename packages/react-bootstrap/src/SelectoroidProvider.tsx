@@ -15,7 +15,7 @@ import { ExpandedIcon } from "./ExpandedIcon";
 interface Props extends React.PropsWithChildren<ContextProps> {}
 
 export function SelectoroidProvider({
-  multi,
+  multiple,
   options,
   value,
   filterFunction,
@@ -24,7 +24,7 @@ export function SelectoroidProvider({
 }: Props) {
   return (
     <SelectoroidContext
-      multi={multi}
+      multiple={multiple}
       options={options}
       value={value}
       onChange={onChange}

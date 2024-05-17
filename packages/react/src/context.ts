@@ -28,7 +28,7 @@ interface CommonProps {
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export interface ContextProps extends CommonProps {
-  multi?: boolean;
+  multiple?: boolean;
   filter?: string;
   filterFunction?: FilterFunction;
   renderOptionContainer?(props: React.PropsWithChildren<any>): React.ReactNode;
@@ -59,7 +59,7 @@ export interface ContextValue extends CommonProps {
   setFilter: React.Dispatch<React.SetStateAction<string>>;
   maxDepth: number;
   isOpen: boolean;
-  isMulti: boolean;
+  isMultiple: boolean;
   setOpen(open?: boolean): void;
   toggleValue(option: Option): [OptionValue[], boolean];
   addValue(option: Option): [OptionValue[], boolean];

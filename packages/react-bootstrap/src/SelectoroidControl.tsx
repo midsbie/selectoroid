@@ -11,7 +11,7 @@ interface Props extends Omit<BaseProps, OmitProps> {
 }
 
 export function SelectoroidControl({ placeholder = "Please select", ...props }: Props) {
-  const { isMulti, options, value, valueSet, removeValue, setFilter, onChange } =
+  const { isMultiple, options, value, valueSet, removeValue, setFilter, onChange } =
     React.useContext(Context);
   const tags = React.useMemo(() => collectSelectedOptions(options, valueSet), [options, valueSet]);
 
@@ -33,7 +33,7 @@ export function SelectoroidControl({ placeholder = "Please select", ...props }: 
   }, [onChange]);
 
   let widget;
-  if (isMulti) {
+  if (isMultiple) {
     widget = (
       <Taglicious
         {...props}

@@ -13,7 +13,7 @@ import {
 interface Props extends React.PropsWithChildren<ContextProps> {}
 
 export function SelectoroidContext({
-  multi: isMulti = false,
+  multiple: isMultiple = false,
   options,
   value,
   onChange,
@@ -70,7 +70,7 @@ export function SelectoroidContext({
     filteredOptions = filteredOptions.filter(filterFunction(trimmedFilter));
 
     return {
-      isMulti,
+      isMultiple: isMultiple,
       options,
       filteredOptions,
       maxDepth,
@@ -90,7 +90,7 @@ export function SelectoroidContext({
       renderOption,
     };
   }, [
-    isMulti,
+    isMultiple,
     options,
     value,
     filter,
