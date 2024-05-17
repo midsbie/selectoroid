@@ -10,8 +10,9 @@ interface Props extends Omit<BaseProps, OmitProps> {
   ariaLabel?: string;
 }
 
-export function SelectoroidControl(props: Props) {
-  const { options, value, valueSet, removeValue, setFilter, onChange } = React.useContext(Context);
+export function SelectoroidControl({ placeholder = "Please select", ...props }: Props) {
+  const { isMulti, options, value, valueSet, removeValue, setFilter, onChange } =
+    React.useContext(Context);
   const tags = React.useMemo(() => collectSelectedOptions(options, valueSet), [options, valueSet]);
 
   const handleInputChange = React.useCallback((nextFilter: string) => {
@@ -31,14 +32,23 @@ export function SelectoroidControl(props: Props) {
     onChange([], { type: "clear" });
   }, [onChange]);
 
+  if (isMulti) {
+    return (
+      <Taglicious
+        {...props}
+        variant="select"
+        placeholder={placeholder}
+        value={tags}
+        onInputChange={handleInputChange}
+        onRemove={handleRemove}
+        onClear={handleClear}
+      />
+    );
+  }
+
   return (
-    <Taglicious
-      {...props}
-      variant="select"
-      value={tags}
-      onInputChange={handleInputChange}
-      onRemove={handleRemove}
-      onClear={handleClear}
-    />
+    <div {...props} className="form-select">
+      {tags[0]?.label ?? placeholder}
+    </div>
   );
 }
