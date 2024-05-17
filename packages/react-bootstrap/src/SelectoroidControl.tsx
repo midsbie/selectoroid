@@ -32,8 +32,9 @@ export function SelectoroidControl({ placeholder = "Please select", ...props }: 
     onChange([], { type: "clear" });
   }, [onChange]);
 
+  let widget;
   if (isMulti) {
-    return (
+    widget = (
       <Taglicious
         {...props}
         variant="select"
@@ -44,11 +45,13 @@ export function SelectoroidControl({ placeholder = "Please select", ...props }: 
         onClear={handleClear}
       />
     );
+  } else {
+    widget = (
+      <div {...props} className="form-select">
+        {tags[0].label ?? placeholder}
+      </div>
+    );
   }
 
-  return (
-    <div {...props} className="form-select">
-      {tags[0]?.label ?? placeholder}
-    </div>
-  );
+  return <div className="selectoroid-control">{widget}</div>;
 }
