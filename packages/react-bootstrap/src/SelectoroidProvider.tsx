@@ -3,10 +3,9 @@ import * as React from "react";
 import { Col, ListGroup, ListGroupItem, Row } from "react-bootstrap";
 
 import {
-  ContextProps,
-  RenderOptionAttrs,
+  ContextProps, FocusManager, RenderOptionAttrs,
   RenderOptionProps,
-  SelectoroidContext,
+  SelectoroidContext
 } from "@selectoroid/react";
 
 import { Badge } from "./Badge";
@@ -33,7 +32,7 @@ export function SelectoroidProvider({
       renderOption={renderOption}
       filterFunction={filterFunction}
     >
-      {children}
+      <FocusManager>{children}</FocusManager>
     </SelectoroidContext>
   );
 }

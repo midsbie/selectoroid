@@ -1,9 +1,0 @@
-{
-  "name": "@selectoroid/react-hooks",
-  "version": "0.0.1",
-  "main": "src/index.ts",
-  "license": "MIT",
-  "peerDependencies": {
-    "react": "^18"
-  }
-}

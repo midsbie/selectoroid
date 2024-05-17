@@ -10,7 +10,11 @@ interface Props extends Omit<BaseProps, OmitProps> {
   ariaLabel?: string;
 }
 
-export function SelectoroidControl({ placeholder = "Please select...", ...props }: Props) {
+export function SelectoroidControl({
+  ariaLabel,
+  placeholder = "Please select...",
+  ...props
+}: Props) {
   const { isMultiple, options, value, valueSet, removeValue, setFilter, onChange } =
     React.useContext(Context);
   const tags = React.useMemo(() => collectSelectedOptions(options, valueSet), [options, valueSet]);
@@ -28,9 +32,13 @@ export function SelectoroidControl({ placeholder = "Please select...", ...props 
     [value],
   );
 
-  const handleClear = React.useCallback(() => {
-    onChange([], { type: "clear" });
-  }, [onChange]);
+  const handleClear = React.useCallback(
+    (ev: React.MouseEvent | undefined) => {
+      ev?.stopPropagation();
+      onChange([], { type: "clear" });
+    },
+    [onChange],
+  );
 
   let widget;
   if (isMultiple) {
@@ -38,6 +46,7 @@ export function SelectoroidControl({ placeholder = "Please select...", ...props 
       <Taglicious
         {...props}
         variant="select"
+        aria-label={ariaLabel}
         placeholder={placeholder}
         value={tags}
         onInputChange={handleInputChange}
@@ -47,11 +56,11 @@ export function SelectoroidControl({ placeholder = "Please select...", ...props 
     );
   } else {
     widget = (
-      <div {...props} className="form-select">
+      <div {...props} aria-label={ariaLabel} className="form-select">
         {tags[0].label ?? placeholder}
       </div>
     );
   }
 
-  return <div className="selectoroid-control">{widget}</div>;
+  return <div className={"selectoroid-control"}>{widget}</div>;
 }

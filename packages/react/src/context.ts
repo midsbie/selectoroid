@@ -58,9 +58,12 @@ export interface ContextValue extends CommonProps {
   filter: string;
   setFilter: React.Dispatch<React.SetStateAction<string>>;
   maxDepth: number;
+  isFocused: boolean;
   isOpen: boolean;
   isMultiple: boolean;
   setOpen(open?: boolean): void;
+  toggleOpen(): void;
+  setFocused(focused?: boolean): void;
   toggleValue(option: Option): [OptionValue[], boolean];
   addValue(option: Option): [OptionValue[], boolean];
   removeValue(option: Option): [OptionValue[], boolean];

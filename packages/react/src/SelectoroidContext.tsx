@@ -24,8 +24,12 @@ export function SelectoroidContext({
   children,
 }: Props) {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [isFocused, setIsFocused] = React.useState(false);
   const [filter, setFilter] = React.useState("");
-  const setOpen = React.useCallback((newOpen: boolean = true) => setIsOpen(newOpen), []);
+  const setOpen = React.useCallback((next: boolean = true) => setIsOpen(next), []);
+  const setFocused = React.useCallback((next: boolean = true) => {
+    setIsFocused(next);
+  }, []);
 
   const toggleValue = React.useCallback(
     (option: Option): [OptionValue[], boolean] => {
@@ -62,6 +66,10 @@ export function SelectoroidContext({
     [value],
   );
 
+  React.useEffect(() => {
+    if (!isFocused) setIsOpen(false);
+  }, [isFocused]);
+
   const ctx = React.useMemo<ContextValue>(() => {
     const valueSet = new Set(value);
     const maxDepth = determineMaxDepth(options);
@@ -70,7 +78,7 @@ export function SelectoroidContext({
     filteredOptions = filteredOptions.filter(filterFunction(trimmedFilter));
 
     return {
-      isMultiple: isMultiple,
+      isMultiple,
       options,
       filteredOptions,
       maxDepth,
@@ -82,6 +90,9 @@ export function SelectoroidContext({
       onChange,
       isOpen,
       setOpen,
+      toggleOpen: () => setIsOpen((o) => !o),
+      isFocused,
+      setFocused,
       toggleValue,
       addValue,
       removeValue,
@@ -98,6 +109,8 @@ export function SelectoroidContext({
     onChange,
     isOpen,
     setOpen,
+    isFocused,
+    setFocused,
     toggleValue,
     addValue,
     removeValue,
