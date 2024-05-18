@@ -1,6 +1,5 @@
-import { Option } from "@selectoroid/model";
+import { FilterFunc, Option } from "@selectoroid/model";
 
-export type FilterFunc = (option: Option) => boolean;
 export type FilterFuncFactory = (filter: string) => FilterFunc;
 
 export function filterByLabelSubstring(filter: string) {

@@ -1,6 +1,6 @@
-import { FilterFunc } from "packages/react/src/functions";
-
 import { Option, OptionValue } from "./typedefs";
+
+export type FilterFunc = (option: Option) => boolean;
 
 export interface Model {
   get options(): readonly Option[];
