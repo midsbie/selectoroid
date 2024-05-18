@@ -1,4 +1,5 @@
 import { Props as BaseProps, Taglicious } from "@taglicious/react-bootstrap";
+import classNames from "classnames";
 import * as React from "react";
 
 import { Option } from "@selectoroid/model";
@@ -15,7 +16,7 @@ export function SelectoroidControl({
   placeholder = "Please select...",
   ...props
 }: Props) {
-  const { isMultiple, model, setFilter, onChange } = React.useContext(Context);
+  const { isFocused, isMultiple, model, setFilter, onChange } = React.useContext(Context);
   const tags = model.getSelectedOptions();
 
   const handleInputChange = React.useCallback(
@@ -58,7 +59,11 @@ export function SelectoroidControl({
     );
   } else {
     widget = (
-      <div {...props} aria-label={ariaLabel} className="form-select">
+      <div
+        {...props}
+        aria-label={ariaLabel}
+        className={classNames("selectoroid-static form-select", { "focus-ring": isFocused })}
+      >
         {tags[0].label ?? placeholder}
       </div>
     );

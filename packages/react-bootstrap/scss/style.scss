@@ -1,3 +1,14 @@
+.selectoroid-control {
+  .selectoroid-static {
+    cursor: default;
+
+    &.focus-ring {
+      box-shadow: var(--bs-focus-ring-x, 0) var(--bs-focus-ring-y, 0) var(--bs-focus-ring-blur, 0)
+        var(--bs-focus-ring-width) var(--bs-focus-ring-color);
+    }
+  }
+}
+
 .selectoroid {
   width: 100%;
   height: 25em;
