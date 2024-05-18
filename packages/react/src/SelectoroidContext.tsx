@@ -59,16 +59,17 @@ export function SelectoroidContext({
       renderOption,
     };
   }, [
-    isMultiple,
     options,
     value,
     filter,
     filterFunction,
+    isMultiple,
     onChange,
     isOpen,
     setOpen,
     isFocused,
     setFocused,
+    constructModel,
     renderOptionContainer,
     renderOptionList,
     renderOption,
