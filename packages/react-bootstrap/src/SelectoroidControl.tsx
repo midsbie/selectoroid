@@ -49,6 +49,7 @@ export function SelectoroidControl({
       <Taglicious
         {...props}
         variant="select"
+        focused={isFocused}
         aria-label={ariaLabel}
         placeholder={placeholder}
         value={tags}
