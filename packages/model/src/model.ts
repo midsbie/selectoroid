@@ -125,28 +125,64 @@ export class AbstractModel {
 export class MultipleValueModel extends AbstractModel implements Model {
   add(option: Option): [readonly OptionValue[], boolean] {
     if (this.isSelected(option.value)) return [this.selections, false];
-    return [[...this.selections, option.value], true];
+    return [this.push(option), true];
   }
 
   remove(option: Option): [readonly OptionValue[], boolean] {
     const idx = this.selections.indexOf(option.value);
     if (idx < 0) return [this.selections, false];
 
-    const next = [...this.selections];
-    next.splice(idx, 1);
-    return [next, true];
+    return [this.removeAt(idx), true];
   }
 
   toggle(option: Option): [readonly OptionValue[], boolean] {
-    const next = [...this.selections];
-    const idx = next.indexOf(option.value);
-    if (idx < 0) {
-      next.push(option.value);
-      return [next, true];
+    const idx = this.selections.indexOf(option.value);
+    if (idx >= 0) return [this.removeAt(idx), false];
+
+    return [this.push(option), true];
+  }
+
+  private findParentOf(option: Option): OptionValue | null {
+    function find(parents: readonly Option[]): OptionValue | null {
+      for (const parent of parents) {
+        if (parent.children?.some((child) => child.value === option.value)) {
+          return parent.value;
+        }
+      }
+
+      return null;
     }
 
+    return find(this.options);
+  }
+
+  private getDescendantValues(option: Option): Set<OptionValue> {
+    const descendantValues = new Set<OptionValue>();
+
+    function traverse(options: Option[] | undefined) {
+      if (!options) return;
+      for (const opt of options) {
+        descendantValues.add(opt.value);
+        traverse(opt.children);
+      }
+    }
+
+    traverse(option.children);
+    return descendantValues;
+  }
+
+  private push(option: Option): readonly OptionValue[] {
+    const parentId = this.findParentOf(option);
+    const descendantValues = this.getDescendantValues(option);
+    const next = this.selections.filter((v) => v !== parentId && !descendantValues.has(v));
+    next.push(option.value);
+    return next;
+  }
+
+  private removeAt(idx: number): readonly OptionValue[] {
+    const next = [...this.selections];
     next.splice(idx, 1);
-    return [next, false];
+    return next;
   }
 }
 
@@ -162,15 +198,8 @@ export class SingleValueModel extends AbstractModel implements Model {
   }
 
   toggle(option: Option): [readonly OptionValue[], boolean] {
-    const next = [...this.selections];
-    const idx = next.indexOf(option.value);
-    if (idx < 0) {
-      next.push(option.value);
-      return [next, true];
-    }
-
-    next.splice(idx, 1);
-    return [next, false];
+    if (this.selections[0] !== option.value) return [[option.value], true];
+    return [[], false];
   }
 }
 
