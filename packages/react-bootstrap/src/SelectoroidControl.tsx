@@ -18,17 +18,20 @@ export function SelectoroidControl({
   const { isMultiple, model, setFilter, onChange } = React.useContext(Context);
   const tags = model.getSelectedOptions();
 
-  const handleInputChange = React.useCallback((nextFilter: string) => {
-    setFilter(nextFilter);
-    return false;
-  }, []);
+  const handleInputChange = React.useCallback(
+    (nextFilter: string) => {
+      setFilter(nextFilter);
+      return false;
+    },
+    [setFilter],
+  );
 
   const handleRemove = React.useCallback(
     (option: Option) => {
       const [next, ok] = model.remove(option);
       if (ok) onChange(next, { type: "remove", option });
     },
-    [model],
+    [model, onChange],
   );
 
   const handleClear = React.useCallback(
