@@ -174,14 +174,19 @@ export class SingleValueModel extends AbstractModel implements Model {
   }
 }
 
-interface Attrs {
+interface ContructModelOptions {
   isMultiple: boolean;
   options: readonly Option[];
   value: readonly OptionValue[];
   filterFunc: FilterFunc;
 }
 
-export function constructModel({ isMultiple, options, value, filterFunc }: Attrs) {
+export function defaultModelConstructor({
+  isMultiple,
+  options,
+  value,
+  filterFunc,
+}: ContructModelOptions) {
   if (isMultiple) return new MultipleValueModel(options, value, filterFunc);
   return new SingleValueModel(options, value, filterFunc);
 }

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { constructModel } from "@selectoroid/model";
+import { defaultModelConstructor } from "@selectoroid/model";
 
 import { Context, ContextProps, ContextValue } from "./context";
 import { filterByLabelSubstring } from "./functions";
@@ -17,6 +17,7 @@ export function SelectoroidContext({
   options,
   value,
   onChange,
+  constructModel = defaultModelConstructor,
   renderOptionContainer = defaultRenderOptionContainer,
   renderOptionList = defaultRenderOptionList,
   renderOption = defaultRenderOption,

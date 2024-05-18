@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Model, Option, OptionValue, SelectedOption } from "@selectoroid/model";
+import { Model, Option, OptionValue, SelectedOption, constructModel } from "@selectoroid/model";
 
 import { FilterFuncFactory } from "./functions";
 
@@ -31,6 +31,7 @@ export interface ContextProps extends CommonProps {
   multiple?: boolean;
   filter?: string;
   filterFunction?: FilterFuncFactory;
+  constructModel?: typeof constructModel;
   renderOptionContainer?(props: React.PropsWithChildren<any>): React.ReactNode;
   renderOptionList?(props: React.PropsWithChildren<any>, index: number): React.ReactNode;
   renderOption?(attrs: RenderOptionAttrs, props: RenderOptionProps): React.ReactNode;
