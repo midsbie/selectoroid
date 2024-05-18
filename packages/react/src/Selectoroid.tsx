@@ -1,43 +1,27 @@
 import * as React from "react";
 
-import {
-  Option,
-  OptionValue,
-  SelectedOption,
-  determineExpandedOptions,
-  getOptionLeaf,
-} from "@selectoroid/model";
+import { Option, OptionValue, SelectedOption } from "@selectoroid/model";
 import { OptionList } from "@selectoroid/react";
 
 import { Context } from "./context";
 
 export function Selectoroid() {
-  const {
-    filteredOptions,
-    value,
-    valueSet,
-    toggleValue,
-    maxDepth,
-    isMultiple,
-    setOpen,
-    onChange,
-    renderOptionContainer,
-    renderOptionList,
-  } = React.useContext(Context);
+  const { model, isMultiple, setOpen, onChange, renderOptionContainer, renderOptionList } =
+    React.useContext(Context);
 
   const [expanded, setExpanded] = React.useState<OptionValue[]>(() => {
-    const r = determineExpandedOptions(filteredOptions, valueSet);
-    return r.length > 0 ? r : [filteredOptions[0]?.value].filter(Boolean);
+    const r = model.getExpandedOptions();
+    return r.length > 0 ? r : [model.getFilteredOptions()[0]?.value].filter(Boolean);
   });
 
   const handleClick = React.useCallback(
     (_ev: React.MouseEvent, option: SelectedOption) => {
       if (!isMultiple) setOpen(false);
 
-      const [next, added] = toggleValue(option);
+      const [next, added] = model.toggle(option);
       onChange(next, { type: added ? "add" : "remove", option });
     },
-    [value, isMultiple, setOpen, onChange],
+    [model, isMultiple, setOpen, onChange],
   );
 
   const handleSetActive = React.useCallback(
@@ -52,8 +36,8 @@ export function Selectoroid() {
   );
 
   const body: React.ReactNode[] = [];
-  let topt = filteredOptions;
-  for (let i = 0; i < maxDepth; ++i) {
+  let topt = model.getFilteredOptions();
+  for (let i = 0; i < model.getMaxDepth(); ++i) {
     body.push(
       renderOptionList(
         {
@@ -72,7 +56,7 @@ export function Selectoroid() {
       ),
     );
 
-    topt = getOptionLeaf(topt, expanded[i]);
+    topt = model.getOptionLeaf(topt, expanded[i]);
   }
 
   return renderOptionContainer({ className: "selectoroid", children: body });

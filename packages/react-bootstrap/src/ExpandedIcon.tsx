@@ -1,6 +1,8 @@
-import { Option, shouldShowExpandedIcon } from "@selectoroid/model";
 import * as React from "react";
 import { ChevronRight } from "react-bootstrap-icons";
+
+import { Option } from "@selectoroid/model";
+import { Context } from "@selectoroid/react";
 
 interface Props {
   expanded?: boolean;
@@ -8,7 +10,8 @@ interface Props {
 }
 
 export function ExpandedIcon({ expanded, option }: Props) {
-  if (!shouldShowExpandedIcon(expanded, option)) return null;
+  const { model } = React.useContext(Context);
+  if (!model.shouldShowExpandedIcon(option, expanded)) return null;
 
   return (
     <div className="rcs-expanded-icon">

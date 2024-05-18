@@ -3,13 +3,16 @@ import * as React from "react";
 import { ExpandedIcon } from "./ExpandedIcon";
 import { RenderOptionAttrs, RenderOptionProps } from "./context";
 
-export function defaultRenderOptionContainer({ children, ...props }: React.PropsWithChildren<any>) {
+export function defaultRenderOptionContainer<T = Element>({
+  children,
+  ...props
+}: React.PropsWithChildren<T>) {
   return <div {...props}>{children}</div>;
 }
 
 export function defaultRenderOptionList(
   { children, ...props }: React.PropsWithChildren,
-  index: number
+  index: number,
 ) {
   return (
     <div key={index} {...props} className="rcs-col">

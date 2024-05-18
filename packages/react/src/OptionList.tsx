@@ -1,18 +1,18 @@
 import * as React from "react";
 
-import { Option, OptionValue, SelectedOption, countSelected } from "@selectoroid/model";
+import { Option, OptionValue, SelectedOption } from "@selectoroid/model";
 import { Context } from "@selectoroid/react";
 
 interface Props {
   depth: number;
-  expandedOption: OptionValue | null | undefined;
-  options: Readonly<Option[]>;
+  expandedOption: Readonly<OptionValue> | null | undefined;
+  options: readonly Option[];
   onClick: (ev: React.MouseEvent, opt: SelectedOption) => void;
   onMouseOver: (ev: React.MouseEvent, opt: SelectedOption) => void;
 }
 
 export function OptionList({ depth, expandedOption, options, onClick, onMouseOver }: Props) {
-  const { valueSet, renderOption } = React.useContext(Context);
+  const { model, renderOption } = React.useContext(Context);
 
   const handleMouseOver = React.useCallback(
     (ev: React.MouseEvent, opt: SelectedOption) => {
@@ -25,9 +25,9 @@ export function OptionList({ depth, expandedOption, options, onClick, onMouseOve
     const isExpanded = opt.value === expandedOption;
     return renderOption(
       {
-        isSelected: valueSet.has(opt.value),
+        isSelected: model.isSelected(opt.value),
         isExpanded,
-        childSelectionCount: countSelected(opt, valueSet),
+        childSelectionCount: model.countSelections(opt),
         option: opt,
       },
       {

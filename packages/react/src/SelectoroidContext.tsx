@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Option, OptionValue, determineMaxDepth } from "@selectoroid/model";
+import { constructModel } from "@selectoroid/model";
 
 import { Context, ContextProps, ContextValue } from "./context";
 import { filterByLabelSubstring } from "./functions";
@@ -31,61 +31,21 @@ export function SelectoroidContext({
     setIsFocused(next);
   }, []);
 
-  const toggleValue = React.useCallback(
-    (option: Option): [OptionValue[], boolean] => {
-      const idx = value.indexOf(option.value);
-      const next = [...value];
-      if (idx < 0) {
-        next.push(option.value);
-        return [next, true];
-      }
-
-      next.splice(idx, 1);
-      return [next, false];
-    },
-    [value],
-  );
-
-  const addValue = React.useCallback(
-    (option: Option): [OptionValue[], boolean] => {
-      if (value.includes(option.value)) return [value as OptionValue[], false];
-      return [[...value, option.value], true];
-    },
-    [value],
-  );
-
-  const removeValue = React.useCallback(
-    (option: Option): [OptionValue[], boolean] => {
-      const idx = value.indexOf(option.value);
-      if (idx < 0) return [value as OptionValue[], false];
-
-      const next = [...value];
-      next.splice(idx, 1);
-      return [next, true];
-    },
-    [value],
-  );
-
   React.useEffect(() => {
     if (!isFocused) setIsOpen(false);
   }, [isFocused]);
 
   const ctx = React.useMemo<ContextValue>(() => {
-    const valueSet = new Set(value);
-    const maxDepth = determineMaxDepth(options);
-    let filteredOptions = maxDepth < 2 ? options.filter((o) => !valueSet.has(o.value)) : options;
-    const trimmedFilter = filter.trim();
-    filteredOptions = filteredOptions.filter(filterFunction(trimmedFilter));
-
-    return {
+    const model = constructModel({
       isMultiple,
       options,
-      filteredOptions,
-      maxDepth,
       value,
-      valueSet,
-      filter: trimmedFilter,
-      filterFunction,
+      filterFunc: filterFunction(filter.trim()),
+    });
+
+    return {
+      model,
+      isMultiple,
       setFilter,
       onChange,
       isOpen,
@@ -93,9 +53,6 @@ export function SelectoroidContext({
       toggleOpen: () => setIsOpen((o) => !o),
       isFocused,
       setFocused,
-      toggleValue,
-      addValue,
-      removeValue,
       renderOptionContainer,
       renderOptionList,
       renderOption,
@@ -111,9 +68,6 @@ export function SelectoroidContext({
     setOpen,
     isFocused,
     setFocused,
-    toggleValue,
-    addValue,
-    removeValue,
     renderOptionContainer,
     renderOptionList,
     renderOption,

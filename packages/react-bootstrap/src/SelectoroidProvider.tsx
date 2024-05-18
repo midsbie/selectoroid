@@ -3,9 +3,11 @@ import * as React from "react";
 import { Col, ListGroup, ListGroupItem, Row } from "react-bootstrap";
 
 import {
-  ContextProps, FocusManager, RenderOptionAttrs,
+  ContextProps,
+  FocusManager,
+  RenderOptionAttrs,
   RenderOptionProps,
-  SelectoroidContext
+  SelectoroidContext,
 } from "@selectoroid/react";
 
 import { Badge } from "./Badge";
@@ -45,7 +47,10 @@ function renderOptionContainer({ children, ...props }: React.PropsWithChildren) 
   );
 }
 
-function renderOptionList({ children, ...props }: React.PropsWithChildren<any>, index: number) {
+function renderOptionList<T = Element>(
+  { children, ...props }: React.PropsWithChildren<T>,
+  index: number,
+) {
   return (
     <Col key={index} {...props}>
       <div className="rcs-listgroup-wrapper">

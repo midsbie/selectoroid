@@ -1,11 +1,9 @@
 import { Option } from "@selectoroid/model";
 
-export type FilterFunction = (filter: string) => (option: Option) => boolean;
+export type FilterFunc = (option: Option) => boolean;
+export type FilterFuncFactory = (filter: string) => FilterFunc;
 
 export function filterByLabelSubstring(filter: string) {
   if (filter.length < 1) return () => true;
-
-  return function (option: Option): boolean {
-    return option.label.toLowerCase().includes(filter.toLowerCase());
-  };
+  return (option: Option): boolean => option.label.toLowerCase().includes(filter.toLowerCase());
 }

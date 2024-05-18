@@ -1,7 +1,7 @@
 import { Props as BaseProps, Taglicious } from "@taglicious/react-bootstrap";
 import * as React from "react";
 
-import { Option, collectSelectedOptions } from "@selectoroid/model";
+import { Option } from "@selectoroid/model";
 import { Context } from "@selectoroid/react";
 
 type OmitProps = "value" | "onInputChange" | "onRemove" | "onClear";
@@ -15,9 +15,8 @@ export function SelectoroidControl({
   placeholder = "Please select...",
   ...props
 }: Props) {
-  const { isMultiple, options, value, valueSet, removeValue, setFilter, onChange } =
-    React.useContext(Context);
-  const tags = React.useMemo(() => collectSelectedOptions(options, valueSet), [options, valueSet]);
+  const { isMultiple, model, setFilter, onChange } = React.useContext(Context);
+  const tags = model.getSelectedOptions();
 
   const handleInputChange = React.useCallback((nextFilter: string) => {
     setFilter(nextFilter);
@@ -26,10 +25,10 @@ export function SelectoroidControl({
 
   const handleRemove = React.useCallback(
     (option: Option) => {
-      const [next, ok] = removeValue(option);
+      const [next, ok] = model.remove(option);
       if (ok) onChange(next, { type: "remove", option });
     },
-    [value],
+    [model],
   );
 
   const handleClear = React.useCallback(
