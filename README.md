@@ -28,8 +28,8 @@ yarn install
 Import the required components and types from the library:
 
 ```jsx
-import { Selectoroid } from '@selectoroid/react-bootstrap';
-import { Option, Options, SelectedOption } from '@selectoroid/model';
+import { Option, Options, SelectedOption } from "@selectoroid/model";
+import { Selectoroid } from "@selectoroid/react-bootstrap";
 ```
 
 Define your options and selection handler:
@@ -63,4 +63,5 @@ Contributions are what make the open-source community such an amazing place to l
 create. All contributions are greatly appreciated.
 
 ## License
+
 Distributed under the MIT License. See LICENSE for more information.
