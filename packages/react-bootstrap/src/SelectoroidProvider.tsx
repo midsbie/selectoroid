@@ -53,6 +53,7 @@ function Menu({ children, ...props }: RenderProps) {
   );
 }
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 function OptionsList({ children, ...props }: RenderProps) {
   return (
     <Col {...(props as any)}>
@@ -62,7 +63,9 @@ function OptionsList({ children, ...props }: RenderProps) {
     </Col>
   );
 }
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 function Option({ isSelected, isExpanded, option, childSelectionCount, ...props }: OptionProps) {
   return (
     <ListGroupItem
@@ -80,6 +83,7 @@ function Option({ isSelected, isExpanded, option, childSelectionCount, ...props 
     </ListGroupItem>
   );
 }
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
 function EmptyOptions() {
   return <ListGroupItem className="selectoroid-empty-options">No options available</ListGroupItem>;

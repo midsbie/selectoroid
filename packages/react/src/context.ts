@@ -38,7 +38,6 @@ interface CommonProps {
   onChange: (next: readonly OptionValue[], context: ChangeContext) => void;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface ContextProps extends CommonProps {
   options: readonly Option[];
   value: readonly OptionValue[];
@@ -48,9 +47,7 @@ export interface ContextProps extends CommonProps {
   constructModel?: typeof defaultModelConstructor;
   components?: RenderComponents;
 }
-/* eslint-enable @typescript-eslint/no-explicit-any */
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface OptionProps extends RenderProps {
   isSelected: boolean;
   isExpanded: boolean;
@@ -70,5 +67,6 @@ export interface ContextValue extends CommonProps {
   setFocused(focused?: boolean): void;
 }
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const Context = React.createContext<ContextValue>(null as any);
 /* eslint-enable @typescript-eslint/no-explicit-any */
