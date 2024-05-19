@@ -86,5 +86,9 @@ function Option({ isSelected, isExpanded, option, childSelectionCount, ...props 
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
 function EmptyOptions() {
-  return <ListGroupItem className="selectoroid-empty-options">No options available</ListGroupItem>;
+  return (
+    <div className="d-flex justify-content-center align-items-center">
+      <div className="text-center text-muted">No options available</div>
+    </div>
+  );
 }
