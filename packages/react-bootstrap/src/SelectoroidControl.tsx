@@ -59,6 +59,8 @@ export function SelectoroidControl({
       <Taglicious
         {...props}
         variant="select"
+        clearable
+        autoclear
         focused={isFocused}
         aria-label={ariaLabel}
         placeholder={placeholder}
