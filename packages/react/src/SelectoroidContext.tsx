@@ -30,9 +30,7 @@ export function SelectoroidContext({
   const [isFocused, setIsFocused] = React.useState(false);
   const [filter, setFilter] = React.useState("");
   const setOpen = React.useCallback((next: boolean = true) => setIsOpen(next), []);
-  const setFocused = React.useCallback((next: boolean = true) => {
-    setIsFocused(next);
-  }, []);
+  const setFocused = React.useCallback((next: boolean = true) => setIsFocused(next), []);
 
   React.useEffect(() => {
     if (!isFocused) setIsOpen(false);
