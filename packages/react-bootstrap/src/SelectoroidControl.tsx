@@ -21,9 +21,7 @@ export function SelectoroidControl({
   const tags = model.getSelectedOptions();
 
   React.useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setOpen(isFocused);
-    }, 100);
+    const timeoutId = setTimeout(() => setOpen(isFocused), 100);
 
     return () => {
       clearTimeout(timeoutId);
