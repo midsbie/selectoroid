@@ -14,7 +14,7 @@
   height: 25em;
   overflow: hidden;
 
-  .rcs-options {
+  .selectoroid-option-list {
     overflow-y: auto;
     margin-right: 1em; // reveals scroll bar
     height: 100%;
@@ -25,14 +25,14 @@
       border-right: 1px solid $border-color;
     }
 
-    .rcs-listgroup-wrapper {
+    .selectoroid-listgroup-wrapper {
       position: relative;
       height: 100%;
 
       .list-group-item {
         display: flex;
 
-        .rcs-label {
+        .selectoroid-option-label {
           flex: 1;
           overflow: hidden;
           text-overflow: ellipsis;

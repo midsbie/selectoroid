@@ -41,7 +41,7 @@ export function SelectoroidMenu() {
     body.push(
       renderListContainer(
         {
-          className: "rcs-options",
+          className: "selectoroid-option-list",
           children: (
             <SelectoroidOptionList
               depth={i}

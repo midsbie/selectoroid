@@ -15,9 +15,9 @@ export function defaultRenderListContainer(
   index: number,
 ) {
   return (
-    <div key={index} {...props} className="rcs-col">
-      <div className="rcs-listgroup-wrapper">
-        <ul className="rcs-list-group">{children}</ul>
+    <div key={index} {...props}>
+      <div className="selectoroid-listgroup-wrapper">
+        <ul className="selectoroid-listgroup">{children}</ul>
       </div>
     </div>
   );
@@ -26,10 +26,10 @@ export function defaultRenderListContainer(
 export function defaultRenderOption(attrs: RenderOptionAttrs, props: RenderOptionProps) {
   const { option } = attrs;
   return (
-    <li key={`rcs-${option.value}`} {...props}>
-      <span className="rcs-label">
+    <li key={`sel-${option.value}`} {...props}>
+      <span className="selectoroid-option-label">
         {option.label}
-        <span className="rcs-badge">{attrs.childSelectionCount}</span>
+        <span className="selectoroid-option-badge">{attrs.childSelectionCount}</span>
       </span>
 
       <ExpandedIcon expanded={attrs.isExpanded} option={option} />

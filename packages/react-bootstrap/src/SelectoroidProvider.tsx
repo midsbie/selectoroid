@@ -53,7 +53,7 @@ function renderOptionList<T = Element>(
 ) {
   return (
     <Col key={index} {...props}>
-      <div className="rcs-listgroup-wrapper">
+      <div className="selectoroid-listgroup-wrapper">
         <ListGroup variant="flush"> {children}</ListGroup>
       </div>
     </Col>
@@ -66,13 +66,13 @@ function renderOption(
 ) {
   return (
     <ListGroupItem
-      key={`rcs-${option.value}`}
+      key={`sel-${option.value}`}
       className={classNames({ expanded: isExpanded })}
       {...props}
       action
       active={isSelected}
     >
-      <span className="rcs-label">
+      <span className="selectoroid-option-label">
         {option.label}
         <Badge selections={childSelectionCount} />
       </span>
