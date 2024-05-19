@@ -27,6 +27,13 @@ interface ChangeContextClear {
 export type ChangeContext = ChangeContextAdd | ChangeContextRemove | ChangeContextClear;
 export interface RenderProps extends React.AllHTMLAttributes<unknown> {}
 
+export interface OptionProps extends RenderProps {
+  isSelected: boolean;
+  isExpanded: boolean;
+  childSelectionCount: number;
+  option: Option;
+}
+
 export interface RenderComponents {
   Menu: React.FC<RenderProps>;
   OptionsList: React.FC<RenderProps>;
@@ -46,13 +53,6 @@ export interface ContextProps extends CommonProps {
   filterFunction?: FilterFuncFactory;
   constructModel?: typeof defaultModelConstructor;
   components?: RenderComponents;
-}
-
-export interface OptionProps extends RenderProps {
-  isSelected: boolean;
-  isExpanded: boolean;
-  childSelectionCount: number;
-  option: Option;
 }
 
 export interface ContextValue extends CommonProps {
