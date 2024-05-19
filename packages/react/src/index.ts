@@ -1,4 +1,5 @@
 export * from "./context";
+export * from "./rendering";
 
 export * from "./FocusManager";
 export * from "./MouseDownSink";

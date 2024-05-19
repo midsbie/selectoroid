@@ -1,21 +1,15 @@
 import * as React from "react";
 
 import { ExpandedIcon } from "./ExpandedIcon";
-import { RenderOptionAttrs, RenderOptionProps } from "./context";
+import { OptionProps, RenderComponents, RenderProps } from "./context";
 
-export function defaultRenderMenuContainer<T = Element>({
-  children,
-  ...props
-}: React.PropsWithChildren<T>) {
+export function Menu({ children, ...props }: RenderProps) {
   return <div {...props}>{children}</div>;
 }
 
-export function defaultRenderListContainer(
-  { children, ...props }: React.PropsWithChildren,
-  index: number,
-) {
+export function OptionsList({ children, ...props }: RenderProps) {
   return (
-    <div key={index} {...props}>
+    <div {...props}>
       <div className="selectoroid-listgroup-wrapper">
         <ul className="selectoroid-listgroup">{children}</ul>
       </div>
@@ -23,20 +17,36 @@ export function defaultRenderListContainer(
   );
 }
 
-export function defaultRenderOption(attrs: RenderOptionAttrs, props: RenderOptionProps) {
-  const { option } = attrs;
+export function Option({
+  option,
+  childSelectionCount,
+  isSelected,
+  isExpanded,
+  ...props
+}: OptionProps) {
   return (
-    <li key={`sel-${option.value}`} {...props}>
+    <li {...props}>
       <span className="selectoroid-option-label">
         {option.label}
-        <span className="selectoroid-option-badge">{attrs.childSelectionCount}</span>
+        <span className="selectoroid-option-badge">{childSelectionCount}</span>
       </span>
 
-      <ExpandedIcon expanded={attrs.isExpanded} option={option} />
+      <ExpandedIcon expanded={isExpanded} option={option} />
     </li>
   );
 }
 
-export function defaultRenderEmptyOptions() {
-  return <li className="selectoroid-empty-options">No options available</li>;
+export function EmptyOptions(props: RenderProps) {
+  return (
+    <li {...props} className="selectoroid-empty-options">
+      No options available
+    </li>
+  );
 }
+
+export const defaultComponents: RenderComponents = {
+  Menu,
+  OptionsList,
+  Option,
+  EmptyOptions,
+};

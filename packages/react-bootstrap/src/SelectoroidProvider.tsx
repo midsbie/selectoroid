@@ -4,8 +4,9 @@ import { Col, ListGroup, ListGroupItem, Row } from "react-bootstrap";
 
 import {
   ContextProps,
-  RenderOptionAttrs,
-  RenderOptionProps,
+  OptionProps,
+  RenderComponents,
+  RenderProps,
   Selectoroid,
   SelectoroidContext,
 } from "@selectoroid/react";
@@ -29,10 +30,7 @@ export function SelectoroidProvider({
       options={options}
       value={value}
       onChange={onChange}
-      renderMenuContainer={renderOptionContainer}
-      renderListContainer={renderOptionList}
-      renderOption={renderOption}
-      renderEmptyOptions={renderEmptyOptions}
+      components={renderComponents}
       filterFunction={filterFunction}
     >
       <Selectoroid>{children}</Selectoroid>
@@ -40,7 +38,14 @@ export function SelectoroidProvider({
   );
 }
 
-function renderOptionContainer({ children, ...props }: React.PropsWithChildren) {
+const renderComponents: RenderComponents = {
+  Menu,
+  OptionsList,
+  Option,
+  EmptyOptions,
+};
+
+function Menu({ children, ...props }: RenderProps) {
   return (
     <div {...props}>
       <Row>{children}</Row>
@@ -48,12 +53,9 @@ function renderOptionContainer({ children, ...props }: React.PropsWithChildren) 
   );
 }
 
-function renderOptionList<T = Element>(
-  { children, ...props }: React.PropsWithChildren<T>,
-  index: number,
-) {
+function OptionsList({ children, ...props }: RenderProps) {
   return (
-    <Col key={index} {...props}>
+    <Col {...(props as any)}>
       <div className="selectoroid-listgroup-wrapper">
         <ListGroup variant="flush"> {children}</ListGroup>
       </div>
@@ -61,15 +63,11 @@ function renderOptionList<T = Element>(
   );
 }
 
-function renderOption(
-  { isSelected, isExpanded, option, childSelectionCount }: RenderOptionAttrs,
-  props: RenderOptionProps,
-) {
+function Option({ isSelected, isExpanded, option, childSelectionCount, ...props }: OptionProps) {
   return (
     <ListGroupItem
-      key={`sel-${option.value}`}
       className={classNames({ expanded: isExpanded })}
-      {...props}
+      {...(props as any)}
       action
       active={isSelected}
     >
@@ -83,6 +81,6 @@ function renderOption(
   );
 }
 
-function renderEmptyOptions() {
+function EmptyOptions() {
   return <ListGroupItem className="selectoroid-empty-options">No options available</ListGroupItem>;
 }

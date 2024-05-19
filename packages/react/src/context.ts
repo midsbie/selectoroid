@@ -25,6 +25,14 @@ interface ChangeContextClear {
 }
 
 export type ChangeContext = ChangeContextAdd | ChangeContextRemove | ChangeContextClear;
+export interface RenderProps extends React.AllHTMLAttributes<unknown> {}
+
+export interface RenderComponents {
+  Menu: React.FC<RenderProps>;
+  OptionsList: React.FC<RenderProps>;
+  Option: React.FC<OptionProps>;
+  EmptyOptions: React.FC<RenderProps>;
+}
 
 interface CommonProps {
   onChange: (next: readonly OptionValue[], context: ChangeContext) => void;
@@ -38,29 +46,20 @@ export interface ContextProps extends CommonProps {
   filter?: string;
   filterFunction?: FilterFuncFactory;
   constructModel?: typeof defaultModelConstructor;
-  renderMenuContainer?(props: React.PropsWithChildren<any>): React.ReactNode;
-  renderListContainer?(props: React.PropsWithChildren<any>, index: number): React.ReactNode;
-  renderOption?(attrs: RenderOptionAttrs, props: RenderOptionProps): React.ReactNode;
-  renderEmptyOptions?(): React.ReactNode;
+  components?: RenderComponents;
 }
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
-export interface RenderOptionAttrs {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export interface OptionProps extends RenderProps {
   isSelected: boolean;
   isExpanded: boolean;
   childSelectionCount: number;
   option: Option;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-export interface RenderOptionProps extends React.HTMLAttributes<any> {}
-
 export interface ContextValue extends CommonProps {
-  renderMenuContainer(props: React.PropsWithChildren<any>): React.ReactNode;
-  renderListContainer(props: React.PropsWithChildren<any>, index: number): React.ReactNode;
-  renderOption(attrs: RenderOptionAttrs, props: RenderOptionProps): React.ReactNode;
-  renderEmptyOptions(): React.ReactNode;
-
+  components: RenderComponents;
   model: Model;
   setFilter: React.Dispatch<React.SetStateAction<string>>;
   isFocused: boolean;
