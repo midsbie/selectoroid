@@ -30,6 +30,7 @@ export function SelectoroidControl({
 
   const handleInputChange = React.useCallback(
     (nextFilter: string) => {
+      setOpen(true);
       setFilter(nextFilter);
       return false;
     },
