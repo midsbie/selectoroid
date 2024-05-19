@@ -4,18 +4,20 @@ import { Context } from "./context";
 
 export function FocusManager({ children }: React.PropsWithChildren) {
   const parentRef = React.useRef<HTMLDivElement>(null);
-  const { setFocused } = React.useContext(Context);
+  const { isFocused, setFocused } = React.useContext(Context);
+  const isFocusedRef = React.useRef(false);
+  isFocusedRef.current = isFocused;
 
   React.useEffect(() => {
     const handleFocusIn = (event: FocusEvent) => {
       if (parentRef.current && parentRef.current.contains(event.target as Node | null)) {
-        setFocused(true);
+        if (!isFocusedRef.current) setFocused(true);
       }
     };
 
     const handleFocusOut = (event: FocusEvent) => {
       if (parentRef.current && !parentRef.current.contains(event.relatedTarget as Node | null)) {
-        setFocused(false);
+        if (isFocusedRef.current) setFocused(false);
       }
     };
 
