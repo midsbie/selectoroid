@@ -5,19 +5,17 @@ import { Context } from "./context";
 export function FocusManager({ children }: React.PropsWithChildren) {
   const parentRef = React.useRef<HTMLDivElement>(null);
   const { isFocused, setFocused } = React.useContext(Context);
-  const isFocusedRef = React.useRef(false);
-  isFocusedRef.current = isFocused;
 
   React.useEffect(() => {
     const handleFocusIn = (event: FocusEvent) => {
       if (parentRef.current && parentRef.current.contains(event.target as Node | null)) {
-        if (!isFocusedRef.current) setFocused(true);
+        if (!isFocused) setFocused(true);
       }
     };
 
     const handleFocusOut = (event: FocusEvent) => {
       if (parentRef.current && !parentRef.current.contains(event.relatedTarget as Node | null)) {
-        if (isFocusedRef.current) setFocused(false);
+        if (isFocused) setFocused(false);
       }
     };
 
@@ -33,7 +31,7 @@ export function FocusManager({ children }: React.PropsWithChildren) {
         parentElement.removeEventListener("focusout", handleFocusOut);
       }
     };
-  }, []);
+  }, [isFocused, setFocused]);
 
   return (
     <div ref={parentRef} tabIndex={-1}>
