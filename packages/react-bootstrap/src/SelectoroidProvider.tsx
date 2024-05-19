@@ -4,9 +4,9 @@ import { Col, ListGroup, ListGroupItem, Row } from "react-bootstrap";
 
 import {
   ContextProps,
-  FocusManager,
   RenderOptionAttrs,
   RenderOptionProps,
+  Selectoroid,
   SelectoroidContext,
 } from "@selectoroid/react";
 
@@ -34,7 +34,7 @@ export function SelectoroidProvider({
       renderOption={renderOption}
       filterFunction={filterFunction}
     >
-      <FocusManager>{children}</FocusManager>
+      <Selectoroid>{children}</Selectoroid>
     </SelectoroidContext>
   );
 }

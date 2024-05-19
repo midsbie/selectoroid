@@ -1,7 +1,8 @@
 import * as React from "react";
 
 import { Option, OptionValue, SelectedOption } from "@selectoroid/model";
-import { Context } from "@selectoroid/react";
+
+import { Context } from "./context";
 
 interface Props {
   depth: number;
@@ -11,7 +12,13 @@ interface Props {
   onMouseOver: (ev: React.MouseEvent, opt: SelectedOption) => void;
 }
 
-export function OptionList({ depth, expandedOption, options, onClick, onMouseOver }: Props) {
+export function SelectoroidOptionList({
+  depth,
+  expandedOption,
+  options,
+  onClick,
+  onMouseOver,
+}: Props) {
   const { model, renderOption } = React.useContext(Context);
 
   const handleMouseOver = React.useCallback(

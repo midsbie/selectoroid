@@ -1,7 +1,7 @@
 import * as React from "react";
 import { OverlayTrigger, Popover, PopoverBody } from "react-bootstrap";
 
-import { Context, MouseDownSink, Selectoroid } from "@selectoroid/react";
+import { Context, MouseDownSink, SelectoroidMenu } from "@selectoroid/react";
 
 interface Props extends React.PropsWithChildren {}
 
@@ -19,7 +19,7 @@ export function SelectoroidPopover({ children }: Props) {
           <Popover className="selectoroid-picker-popover">
             <PopoverBody>
               <MouseDownSink>
-                <Selectoroid />
+                <SelectoroidMenu />
               </MouseDownSink>
             </PopoverBody>
           </Popover>
