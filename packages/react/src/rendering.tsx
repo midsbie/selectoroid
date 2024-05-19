@@ -20,7 +20,7 @@ export function OptionsList({ children, ...props }: RenderProps) {
 export function Option({
   option,
   childSelectionCount,
-  isSelected,
+  isSelected: _,
   isExpanded,
   ...props
 }: OptionProps) {
