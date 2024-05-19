@@ -61,6 +61,7 @@ export function SelectoroidControl({
         variant="select"
         clearable
         autoclear
+        readonly={isMultiple}
         focused={isFocused}
         aria-label={ariaLabel}
         placeholder={placeholder}
