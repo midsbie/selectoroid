@@ -61,7 +61,7 @@ export function SelectoroidControl({
         variant="select"
         clearable
         autoclear
-        readonly={isMultiple}
+        readonly={model.getMaxDepth() > 1}
         focused={isFocused}
         aria-label={ariaLabel}
         placeholder={placeholder}
