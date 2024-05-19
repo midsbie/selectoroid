@@ -32,6 +32,7 @@ export function SelectoroidProvider({
       renderMenuContainer={renderOptionContainer}
       renderListContainer={renderOptionList}
       renderOption={renderOption}
+      renderEmptyOptions={renderEmptyOptions}
       filterFunction={filterFunction}
     >
       <Selectoroid>{children}</Selectoroid>
@@ -80,4 +81,8 @@ function renderOption(
       <ExpandedIcon expanded={isExpanded} option={option} />
     </ListGroupItem>
   );
+}
+
+function renderEmptyOptions() {
+  return <ListGroupItem className="selectoroid-empty-options">No options available</ListGroupItem>;
 }

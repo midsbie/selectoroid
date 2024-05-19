@@ -5,6 +5,7 @@ import { defaultModelConstructor } from "@selectoroid/model";
 import { Context, ContextProps, ContextValue } from "./context";
 import { filterByLabelSubstring } from "./functions";
 import {
+  defaultRenderEmptyOptions,
   defaultRenderListContainer,
   defaultRenderMenuContainer,
   defaultRenderOption,
@@ -21,6 +22,7 @@ export function SelectoroidContext({
   renderMenuContainer = defaultRenderMenuContainer,
   renderListContainer = defaultRenderListContainer,
   renderOption = defaultRenderOption,
+  renderEmptyOptions = defaultRenderEmptyOptions,
   filterFunction = filterByLabelSubstring,
   children,
 }: Props) {
@@ -57,6 +59,7 @@ export function SelectoroidContext({
       renderMenuContainer,
       renderListContainer,
       renderOption,
+      renderEmptyOptions,
     };
   }, [
     options,
@@ -73,6 +76,7 @@ export function SelectoroidContext({
     renderMenuContainer,
     renderListContainer,
     renderOption,
+    renderEmptyOptions,
   ]);
 
   return <Context.Provider value={ctx}>{children}</Context.Provider>;

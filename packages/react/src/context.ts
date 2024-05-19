@@ -41,6 +41,7 @@ export interface ContextProps extends CommonProps {
   renderMenuContainer?(props: React.PropsWithChildren<any>): React.ReactNode;
   renderListContainer?(props: React.PropsWithChildren<any>, index: number): React.ReactNode;
   renderOption?(attrs: RenderOptionAttrs, props: RenderOptionProps): React.ReactNode;
+  renderEmptyOptions?(): React.ReactNode;
 }
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
@@ -58,6 +59,7 @@ export interface ContextValue extends CommonProps {
   renderMenuContainer(props: React.PropsWithChildren<any>): React.ReactNode;
   renderListContainer(props: React.PropsWithChildren<any>, index: number): React.ReactNode;
   renderOption(attrs: RenderOptionAttrs, props: RenderOptionProps): React.ReactNode;
+  renderEmptyOptions(): React.ReactNode;
 
   model: Model;
   setFilter: React.Dispatch<React.SetStateAction<string>>;

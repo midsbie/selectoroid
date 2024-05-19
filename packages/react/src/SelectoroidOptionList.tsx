@@ -19,7 +19,7 @@ export function SelectoroidOptionList({
   onClick,
   onMouseOver,
 }: Props) {
-  const { model, renderOption } = React.useContext(Context);
+  const { model, renderOption, renderEmptyOptions } = React.useContext(Context);
 
   const handleMouseOver = React.useCallback(
     (ev: React.MouseEvent, opt: SelectedOption) => {
@@ -28,19 +28,24 @@ export function SelectoroidOptionList({
     [onMouseOver],
   );
 
-  return options.map((opt) => {
-    const isExpanded = opt.value === expandedOption;
-    return renderOption(
-      {
-        isSelected: model.isSelected(opt.value),
-        isExpanded,
-        childSelectionCount: model.countSelections(opt),
-        option: opt,
-      },
-      {
-        onClick: (ev: React.MouseEvent) => onClick(ev, { ...opt, depth }),
-        onMouseOver: (ev: React.MouseEvent) => handleMouseOver(ev, { ...opt, depth }),
-      },
-    );
-  });
+  const nodes = options
+    .map((opt) => {
+      const isExpanded = opt.value === expandedOption;
+      return renderOption(
+        {
+          isSelected: model.isSelected(opt.value),
+          isExpanded,
+          childSelectionCount: model.countSelections(opt),
+          option: opt,
+        },
+        {
+          onClick: (ev: React.MouseEvent) => onClick(ev, { ...opt, depth }),
+          onMouseOver: (ev: React.MouseEvent) => handleMouseOver(ev, { ...opt, depth }),
+        },
+      );
+    })
+    .filter(Boolean);
+
+  if (nodes.length < 1) return renderEmptyOptions();
+  return nodes;
 }

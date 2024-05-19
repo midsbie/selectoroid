@@ -36,3 +36,7 @@ export function defaultRenderOption(attrs: RenderOptionAttrs, props: RenderOptio
     </li>
   );
 }
+
+export function defaultRenderEmptyOptions() {
+  return <li className="selectoroid-empty-options">No options available</li>;
+}
