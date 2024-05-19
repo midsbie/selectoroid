@@ -6,7 +6,7 @@ import { SelectoroidOptionList } from "./SelectoroidOptionList";
 import { Context } from "./context";
 
 export function SelectoroidMenu() {
-  const { model, isMultiple, setOpen, onChange, renderOptionContainer, renderOptionList } =
+  const { model, isMultiple, setOpen, onChange, renderMenuContainer, renderListContainer } =
     React.useContext(Context);
 
   const [expanded, setExpanded] = React.useState<OptionValue[]>(() => {
@@ -39,7 +39,7 @@ export function SelectoroidMenu() {
   let topt = model.getFilteredOptions();
   for (let i = 0; i < model.getMaxDepth(); ++i) {
     body.push(
-      renderOptionList(
+      renderListContainer(
         {
           className: "rcs-options",
           children: (
@@ -59,5 +59,5 @@ export function SelectoroidMenu() {
     topt = model.getOptionLeaf(topt, expanded[i]);
   }
 
-  return renderOptionContainer({ className: "selectoroid-menu", children: body });
+  return renderMenuContainer({ className: "selectoroid-menu", children: body });
 }

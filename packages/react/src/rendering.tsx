@@ -3,14 +3,14 @@ import * as React from "react";
 import { ExpandedIcon } from "./ExpandedIcon";
 import { RenderOptionAttrs, RenderOptionProps } from "./context";
 
-export function defaultRenderOptionContainer<T = Element>({
+export function defaultRenderMenuContainer<T = Element>({
   children,
   ...props
 }: React.PropsWithChildren<T>) {
   return <div {...props}>{children}</div>;
 }
 
-export function defaultRenderOptionList(
+export function defaultRenderListContainer(
   { children, ...props }: React.PropsWithChildren,
   index: number,
 ) {

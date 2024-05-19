@@ -38,8 +38,8 @@ export interface ContextProps extends CommonProps {
   filter?: string;
   filterFunction?: FilterFuncFactory;
   constructModel?: typeof defaultModelConstructor;
-  renderOptionContainer?(props: React.PropsWithChildren<any>): React.ReactNode;
-  renderOptionList?(props: React.PropsWithChildren<any>, index: number): React.ReactNode;
+  renderMenuContainer?(props: React.PropsWithChildren<any>): React.ReactNode;
+  renderListContainer?(props: React.PropsWithChildren<any>, index: number): React.ReactNode;
   renderOption?(attrs: RenderOptionAttrs, props: RenderOptionProps): React.ReactNode;
 }
 /* eslint-enable @typescript-eslint/no-explicit-any */
@@ -55,8 +55,8 @@ export interface RenderOptionAttrs {
 export interface RenderOptionProps extends React.HTMLAttributes<any> {}
 
 export interface ContextValue extends CommonProps {
-  renderOptionContainer(props: React.PropsWithChildren<any>): React.ReactNode;
-  renderOptionList(props: React.PropsWithChildren<any>, index: number): React.ReactNode;
+  renderMenuContainer(props: React.PropsWithChildren<any>): React.ReactNode;
+  renderListContainer(props: React.PropsWithChildren<any>, index: number): React.ReactNode;
   renderOption(attrs: RenderOptionAttrs, props: RenderOptionProps): React.ReactNode;
 
   model: Model;

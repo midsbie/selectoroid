@@ -29,8 +29,8 @@ export function SelectoroidProvider({
       options={options}
       value={value}
       onChange={onChange}
-      renderOptionContainer={renderOptionContainer}
-      renderOptionList={renderOptionList}
+      renderMenuContainer={renderOptionContainer}
+      renderListContainer={renderOptionList}
       renderOption={renderOption}
       filterFunction={filterFunction}
     >

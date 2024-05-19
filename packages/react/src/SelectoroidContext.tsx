@@ -5,9 +5,9 @@ import { defaultModelConstructor } from "@selectoroid/model";
 import { Context, ContextProps, ContextValue } from "./context";
 import { filterByLabelSubstring } from "./functions";
 import {
+  defaultRenderListContainer,
+  defaultRenderMenuContainer,
   defaultRenderOption,
-  defaultRenderOptionContainer,
-  defaultRenderOptionList,
 } from "./rendering";
 
 interface Props extends React.PropsWithChildren<ContextProps> {}
@@ -18,8 +18,8 @@ export function SelectoroidContext({
   value,
   onChange,
   constructModel = defaultModelConstructor,
-  renderOptionContainer = defaultRenderOptionContainer,
-  renderOptionList = defaultRenderOptionList,
+  renderMenuContainer = defaultRenderMenuContainer,
+  renderListContainer = defaultRenderListContainer,
   renderOption = defaultRenderOption,
   filterFunction = filterByLabelSubstring,
   children,
@@ -54,8 +54,8 @@ export function SelectoroidContext({
       toggleOpen: () => setIsOpen((o) => !o),
       isFocused,
       setFocused,
-      renderOptionContainer,
-      renderOptionList,
+      renderMenuContainer,
+      renderListContainer,
       renderOption,
     };
   }, [
@@ -70,8 +70,8 @@ export function SelectoroidContext({
     isFocused,
     setFocused,
     constructModel,
-    renderOptionContainer,
-    renderOptionList,
+    renderMenuContainer,
+    renderListContainer,
     renderOption,
   ]);
 
