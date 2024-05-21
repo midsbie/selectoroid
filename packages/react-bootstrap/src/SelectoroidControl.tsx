@@ -78,7 +78,7 @@ export function SelectoroidControl({
         aria-label={ariaLabel}
         className={classNames("selectoroid-static form-select", { "focus-ring": isFocused })}
       >
-        {tags[0].label ?? placeholder}
+        {tags[0]?.label ?? placeholder}
       </div>
     );
   }
