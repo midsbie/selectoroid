@@ -21,7 +21,7 @@ export function SelectoroidMenu() {
       const [next, added] = model.toggle(option);
       onChange(next, { type: added ? "add" : "remove", option });
     },
-    [model, isMultiple, setOpen, onChange],
+    [model, isMultiple, setOpen, onChange]
   );
 
   const handleSetActive = React.useCallback(
@@ -32,7 +32,7 @@ export function SelectoroidMenu() {
         return av;
       });
     },
-    [setExpanded],
+    [setExpanded]
   );
 
   const body: React.ReactNode[] = [];
@@ -46,7 +46,7 @@ export function SelectoroidMenu() {
         options={topt}
         onClick={handleClick}
         onMouseOver={(_ev, opt) => handleSetActive(i, opt)}
-      />,
+      />
     );
 
     topt = model.getOptionLeaf(topt, expanded[i]);

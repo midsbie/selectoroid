@@ -18,7 +18,7 @@ export interface Model {
   getExpandedOptions(): OptionValue[];
   getOptionLeaf(
     options: readonly Option[],
-    value: Readonly<OptionValue> | null | undefined,
+    value: Readonly<OptionValue> | null | undefined
   ): readonly Option[];
   shouldShowExpandedIcon(option: Option, expanded: boolean | null | undefined): boolean;
 }
@@ -32,7 +32,7 @@ export class AbstractModel {
   constructor(
     public readonly options: readonly Option[],
     public readonly selections: readonly OptionValue[],
-    protected readonly filter: FilterFunc,
+    protected readonly filter: FilterFunc
   ) {
     this.selectionSet = new Set(selections);
   }
@@ -66,7 +66,7 @@ export class AbstractModel {
     if (this.getMaxDepth() > 1) return (this._filteredOptions = this.options);
 
     return (this._filteredOptions = this.options.filter(
-      (o) => !this.isSelected(o.value) && this.filter(o),
+      (o) => !this.isSelected(o.value) && this.filter(o)
     ));
   }
 
@@ -88,7 +88,7 @@ export class AbstractModel {
   getExpandedOptions(): OptionValue[] {
     const determine = (
       options: readonly Option[] | null | undefined,
-      parents: OptionValue[] = [],
+      parents: OptionValue[] = []
     ): OptionValue[] => {
       if (options == null) return [];
 
@@ -106,7 +106,7 @@ export class AbstractModel {
 
   getOptionLeaf(
     options: readonly Option[],
-    value: Readonly<OptionValue> | null | undefined,
+    value: Readonly<OptionValue> | null | undefined
   ): readonly Option[] {
     if (value == null) return [];
 

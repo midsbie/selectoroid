@@ -26,7 +26,7 @@ export function SelectoroidOptionList({
     (ev: React.MouseEvent, opt: SelectedOption) => {
       if (opt.children != null && opt.children.length > 0) onMouseOver(ev, opt);
     },
-    [onMouseOver],
+    [onMouseOver]
   );
 
   const nodes = options
