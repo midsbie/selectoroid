@@ -1,8 +1,17 @@
 {
   "name": "@selectoroid/react",
   "version": "0.0.1",
-  "main": "src/index.ts",
+  "main": "dist/react.cjs.js",
+  "module": "dist/react.esm.js",
+  "types": "dist/types/index.d.ts",
   "license": "MIT",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "files": [
+    "LICENSE",
+    "dist"
+  ],
   "peerDependencies": {
     "react": "^18"
   },
