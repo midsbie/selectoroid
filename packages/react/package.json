@@ -12,6 +12,9 @@
     "LICENSE",
     "dist"
   ],
+  "dependencies": {
+    "@selectoroid/model": "^0"
+  },
   "peerDependencies": {
     "react": "^18"
   },
