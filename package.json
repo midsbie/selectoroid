@@ -5,6 +5,11 @@
   "description": "Easy navigation through nested categories and sub-categories, offering users a clear and intuitive interface for complex selections.",
   "author": "Miguel Guedes <miguel@softgeist.com>",
   "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf packages/*/dist && git restore packages/*/dist/*",
+    "clean:full": "npm run clean && rm -rf node_modules",
+    "build": "npm run build --ws",
+  },
   "workspaces": ["packages/*"],
   "repository": {
     "type": "git",
