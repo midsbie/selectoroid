@@ -6,8 +6,9 @@
   "types": "dist/types/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rm -rf dist && rollup -c && dts-bundle-generator --export-referenced-types=false -o dist/index.d.ts src/index.ts"
   },
+  "types": "dist/index.d.ts",
   "files": [
     "LICENSE",
     "dist"
@@ -18,6 +19,9 @@
     "react-bootstrap": "^2"
   },
   "dependencies": {
+    "@taglicious/model": "^1.1.0-alpha.0",
+    "@taglicious/react": "^1.1.0-alpha.0",
+    "@taglicious/react-bootstrap": "^1.1.0-alpha.0",
     "classnames": "^2.5.1"
   },
   "devDependencies": {

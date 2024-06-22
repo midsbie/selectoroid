@@ -5,32 +5,28 @@
   "description": "Easy navigation through nested categories and sub-categories, offering users a clear and intuitive interface for complex selections.",
   "author": "Miguel Guedes <miguel@softgeist.com>",
   "license": "MIT",
-  "scripts": {
-    "clean": "rm -rf packages/*/dist && git restore packages/*/dist/*",
-    "clean:full": "npm run clean && rm -rf node_modules",
-    "build": "npm run build --ws",
-  },
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "repository": {
     "type": "git",
     "url": "git@github.com:midsbie/selectoroid.git"
   },
   "scripts": {
-    "check": "set -e; for i in code lint fmt; do yarn run check:$i; done; echo 'check: PASS'",
-    "check:code": "yarn run check:tsc && yarn run check:lint",
+    "postinstall": "sh/setup-dev",
+    "setup": "npm install && cd storybook && npm install",
+    "clean": "rm -rf packages/*/dist && sh/setup-dev",
+    "clean:full": "npm run clean && rm -rf node_modules storybook/node_modules packages/*/node_modules",
+    "build": "npm run build --ws",
+    "version": "npm version --ws --no-workspaces-update --include-workspace-root",
+    "package": "npm pack --ws",
+    "check": "set -e; for i in code lint fmt; do npm run check:$i; done; echo 'check: PASS'",
+    "check:code": "npm run check:tsc && npm run check:lint",
     "check:tsc": "tsc --noEmit",
-    "check:tsc:watch": "yarn run check:tsc --watch",
+    "check:tsc:watch": "npm run check:tsc --watch",
     "check:lint": "eslint --color --cache --max-warnings=0 './packages/**/*.{js,ts,tsx}'",
-    "check:fmt": "set -e; for i in src json md scss; do yarn run check:fmt:$i; done",
-    "check:fmt:src": "prettier './packages/**/*.{js,mjs,ts,tsx}' '!dist/**' --check",
-    "check:fmt:json": "prettier --parser json '**/package.json' '!dist/**' --check",
-    "check:fmt:md": "prettier --parser markdown '**/*.md' '!dist/**' --check",
-    "check:fmt:scss": "prettier --parser scss '**/*.scss' '!dist/**' --check",
-    "fix:fmt": "set -e; for i in src json md scss; do yarn run fix:fmt:$i; done",
-    "fix:fmt:src": "yarn run check:fmt:src --write",
-    "fix:fmt:json": "yarn run check:fmt:json --write",
-    "fix:fmt:md": "yarn run check:fmt:md --write",
-    "fix:fmt:scss": "yarn run check:fmt:scss --write"
+    "check:fmt": "prettier package.json storybook/** './packages/**' '!node_modules/**' '!dist/**' --check --ignore-unknown --no-error-on-unmatched-pattern",
+    "fix:fmt": "npm run check:fmt -- --write"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^26.0.1",
@@ -39,12 +35,13 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
-    "esbuild": "^0.20.1",
-    "eslint": "^9.2.0",
-    "lerna": "^8.1.2",
+    "dts-bundle-generator": "^9.5.1",
+    "eslint": "^8.57.0",
     "prettier": "^3.2.5",
     "rollup": "^4.18.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-scss": "^4.0.0",
+    "sass": "^1.77.6",
     "typescript": "^5.3.3",
     "typescript-eslint": "^7.1.0"
   }

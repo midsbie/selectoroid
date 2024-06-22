@@ -6,8 +6,9 @@
   "types": "dist/types/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rm -rf dist && rollup -c && dts-bundle-generator --export-referenced-types=false -o dist/index.d.ts src/index.ts"
   },
+  "types": "dist/index.d.ts",
   "files": [
     "LICENSE",
     "dist"
