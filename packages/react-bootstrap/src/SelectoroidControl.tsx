@@ -1,9 +1,9 @@
+import { Props as BaseProps, Taglicious } from "@taglicious/react-bootstrap";
 import classNames from "classnames";
 import * as React from "react";
 
 import { Option } from "@selectoroid/model";
 import { Context } from "@selectoroid/react";
-import { Props as BaseProps, Taglicious } from "@taglicious/react-bootstrap";
 
 type OmitProps = "value" | "onInputChange" | "onRemove" | "onClear";
 
@@ -34,7 +34,7 @@ export function SelectoroidControl({
       setFilter(nextFilter);
       return false;
     },
-    [setFilter]
+    [setFilter],
   );
 
   const handleRemove = React.useCallback(
@@ -42,7 +42,7 @@ export function SelectoroidControl({
       const [next, ok] = model.remove(option);
       if (ok) onChange(next, { type: "remove", option });
     },
-    [model, onChange]
+    [model, onChange],
   );
 
   const handleClear = React.useCallback(
@@ -50,7 +50,7 @@ export function SelectoroidControl({
       ev?.stopPropagation();
       onChange([], { type: "clear" });
     },
-    [onChange]
+    [onChange],
   );
 
   let widget;

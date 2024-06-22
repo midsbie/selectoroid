@@ -2,9 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "paths": {
-      "@taglicious/model": [
-        "../model"
-      ]
+      "@taglicious/model": ["../model"]
     }
   }
 }
