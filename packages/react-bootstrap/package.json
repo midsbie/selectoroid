@@ -4,7 +4,7 @@
   "main": "src/index.ts",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf dist && rollup -c",
+    "build": "../../sh/build $(pwd)",
     "build:types": "dts-bundle-generator --export-referenced-types=false -o dist/index.d.ts src/index.ts"
   },
   "files": [
@@ -14,13 +14,14 @@
   "peerDependencies": {
     "bootstrap": "^5.3.3",
     "react": "^18",
-    "react-bootstrap": "^2"
+    "react-bootstrap": "^2",
+    "react-bootstrap-icons": "^1"
   },
   "dependencies": {
-    "@taglicious/model": "^1.1.0-alpha.0",
-    "@taglicious/react": "^1.1.0-alpha.0",
-    "@taglicious/react-bootstrap": "^1.1.0-alpha.0",
-    "classnames": "^2.5.1"
+    "classnames": "^2.5.1",
+    "@selectoroid/react": "^0",
+    "@selectoroid/model": "^0",
+    "@taglicious/react-bootstrap": "^1.1.0-alpha.0"
   },
   "devDependencies": {
     "@types/react": "^18",

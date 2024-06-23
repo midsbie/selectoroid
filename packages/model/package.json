@@ -4,7 +4,7 @@
   "main": "src/index.ts",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf dist && rollup -c",
+    "build": "../../sh/build $(pwd)",
     "build:types": "dts-bundle-generator --export-referenced-types=false -o dist/index.d.ts src/index.ts"
   },
   "files": [

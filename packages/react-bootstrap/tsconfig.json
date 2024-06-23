@@ -2,8 +2,8 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "paths": {
-      "@taglicious/model": ["../model"],
-      "@taglicious/react": ["../react"]
+      "@selectoroid/model": ["../model/src/index.ts"],
+      "@selectoroid/react": ["../react/src/index.ts"]
     }
   }
 }
