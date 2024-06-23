@@ -1,14 +1,12 @@
 {
   "name": "@selectoroid/model",
   "version": "0.0.1",
-  "main": "dist/model.cjs.js",
-  "module": "dist/model.esm.js",
-  "types": "dist/types/index.d.ts",
+  "main": "src/index.ts",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf dist && rollup -c && dts-bundle-generator --export-referenced-types=false -o dist/index.d.ts src/index.ts"
+    "build": "rm -rf dist && rollup -c",
+    "build:types": "dts-bundle-generator --export-referenced-types=false -o dist/index.d.ts src/index.ts"
   },
-  "types": "dist/index.d.ts",
   "files": [
     "LICENSE",
     "dist"
