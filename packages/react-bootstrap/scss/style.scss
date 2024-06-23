@@ -15,14 +15,14 @@
   overflow: hidden;
 
   .selectoroid-option-list {
-    overflow-y: auto;
-    margin-right: 1em; // reveals scroll bar
+    flex-basis: 0 !important;
     height: 100%;
-
     margin-bottom: 1em;
+    overflow-y: auto;
 
     &:not(:last-child) {
       border-right: 1px solid $border-color;
+      margin-right: 1em;
     }
 
     .selectoroid-listgroup-wrapper {

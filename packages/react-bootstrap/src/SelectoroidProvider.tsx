@@ -48,19 +48,19 @@ const renderComponents: RenderComponents = {
 function Menu({ children, ...props }: RenderProps) {
   return (
     <div {...props}>
-      <Row>{children}</Row>
+      <div className="d-flex h-100 justify-content-evenly">{children}</div>
     </div>
   );
 }
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-function OptionsList({ children, ...props }: RenderProps) {
+function OptionsList({ className, children, ...props }: RenderProps) {
   return (
-    <Col {...(props as any)}>
+    <div className={classNames(className, "flex-fill")} {...(props as any)}>
       <div className="selectoroid-listgroup-wrapper">
         <ListGroup variant="flush"> {children}</ListGroup>
       </div>
-    </Col>
+    </div>
   );
 }
 /* eslint-enable @typescript-eslint/no-explicit-any */
