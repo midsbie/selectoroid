@@ -21,7 +21,7 @@
     overflow-y: auto;
 
     &:not(:last-child) {
-      border-right: 1px solid $border-color;
+      border-right: 1px solid var(--bs-border-color);
       margin-right: 1em;
     }
 
@@ -47,7 +47,7 @@
 
     .expanded {
       &:not(.active) {
-        background-color: $list-group-hover-bg;
+        background-color: var(--bs-list-group-action-hover-bg);
       }
     }
 
