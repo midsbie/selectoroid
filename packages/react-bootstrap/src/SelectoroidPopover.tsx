@@ -1,11 +1,11 @@
 import * as React from "react";
-import { OverlayTrigger, Popover, PopoverBody } from "react-bootstrap";
+import { OverlayTrigger, OverlayTriggerProps, Popover, PopoverBody } from "react-bootstrap";
 
 import { Context, MouseDownSink, SelectoroidMenu } from "@selectoroid/react";
 
-interface Props extends React.PropsWithChildren {}
+interface Props extends React.PropsWithChildren<OverlayTriggerProps> {}
 
-export function SelectoroidPopover({ children }: Props) {
+export function SelectoroidPopover({ children, ...props }: Props) {
   const { isFocused, isOpen } = React.useContext(Context);
 
   return (
@@ -14,6 +14,7 @@ export function SelectoroidPopover({ children }: Props) {
         trigger="click"
         show={isFocused && isOpen}
         placement="bottom"
+        {...props}
         overlay={
           <Popover className="selectoroid-picker-popover">
             <PopoverBody>
