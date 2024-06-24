@@ -3,7 +3,7 @@ import classNames from "classnames";
 import * as React from "react";
 
 import { Option } from "@selectoroid/model";
-import { Context } from "@selectoroid/react";
+import { Context } from "@selectoroid/react-core";
 
 type OmitProps = "value" | "onInputChange" | "onRemove" | "onClear";
 

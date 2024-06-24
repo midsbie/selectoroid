@@ -1,5 +1,5 @@
 {
-  "name": "@selectoroid/react",
+  "name": "@selectoroid/react-core",
   "version": "0.0.1",
   "main": "src/index.ts",
   "license": "MIT",

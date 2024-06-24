@@ -9,7 +9,7 @@ import {
   RenderProps,
   Selectoroid,
   SelectoroidContext,
-} from "@selectoroid/react";
+} from "@selectoroid/react-core";
 
 import { Badge } from "./Badge";
 import { ExpandedIcon } from "./ExpandedIcon";

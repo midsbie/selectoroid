@@ -2,7 +2,7 @@ import * as React from "react";
 import { ChevronRight } from "react-bootstrap-icons";
 
 import { Option } from "@selectoroid/model";
-import { Context } from "@selectoroid/react";
+import { Context } from "@selectoroid/react-core";
 
 interface Props {
   expanded?: boolean;

@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "classnames": "^2.5.1",
-    "@selectoroid/react": "^0",
     "@selectoroid/model": "^0",
+    "@selectoroid/react-core": "^0",
     "@taglicious/react-bootstrap": "^1.1.0-alpha.0"
   },
   "devDependencies": {

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { OverlayTrigger, OverlayTriggerProps, Popover, PopoverBody } from "react-bootstrap";
 
-import { Context, MouseDownSink, SelectoroidMenu } from "@selectoroid/react";
+import { Context, MouseDownSink, SelectoroidMenu } from "@selectoroid/react-core";
 
 interface Props extends React.PropsWithChildren<OverlayTriggerProps> {}
 

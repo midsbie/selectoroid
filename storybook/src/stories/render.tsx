@@ -2,12 +2,12 @@ import { useArgs } from "@storybook/preview-api";
 import * as React from "react";
 
 import { OptionValue } from "@selectoroid/model";
-import { ChangeContext, ContextProps } from "@selectoroid/react";
 import {
   SelectoroidControl,
   SelectoroidPopover,
   SelectoroidProvider,
 } from "@selectoroid/react-bootstrap";
+import { ChangeContext, ContextProps } from "@selectoroid/react-core";
 
 import { Container } from "./Container";
 

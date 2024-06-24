@@ -3,7 +3,7 @@
   "compilerOptions": {
     "paths": {
       "@selectoroid/model": ["../model/src/index.ts"],
-      "@selectoroid/react": ["../react/src/index.ts"]
+      "@selectoroid/react-core": ["../react-core/src/index.ts"]
     }
   }
 }
