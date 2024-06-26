@@ -11,6 +11,7 @@
     "LICENSE",
     "dist"
   ],
+  "author": "Miguel Guedes <miguel@softgeist.com>",
   "peerDependencies": {
     "react": "^18"
   }

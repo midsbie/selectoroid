@@ -11,6 +11,7 @@
     "LICENSE",
     "dist"
   ],
+  "author": "Miguel Guedes <miguel@softgeist.com>",
   "peerDependencies": {
     "bootstrap": "^5.3.3",
     "react": "^18",
