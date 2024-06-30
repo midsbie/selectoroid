@@ -29,10 +29,21 @@ export function SelectoroidContext({
   }, [isFocused]);
 
   const ctx = React.useMemo<ContextValue>(() => {
+    // First, we use `Array.isArray` for performance in the majority of cases where `value` is in
+    // the same JS context.  To account for the possibility that `value` may originate from a
+    // different JS context, we also verify using `Object.prototype.toString.call` to ensure `value`
+    // is an array.
+    const isValueArray =
+      Array.isArray(value) && Object.prototype.toString.call(value) === "[object Array]";
+
+    !isValueArray &&
+      process.env.NODE_ENV === "development" &&
+      console.warn("The 'value' prop is not an array.");
+
     const model = constructModel({
       isMultiple,
       options,
-      value,
+      value: isValueArray ? value : [],
       filterFunc: filterFunction(filter.trim()),
     });
 
