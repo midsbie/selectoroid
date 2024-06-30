@@ -1,8 +1,4 @@
 {
-  /*
-   * Important documentation on Typescript compiler options to use with Babel:
-   * https://babeljs.io/docs/babel-plugin-transform-typescript#typescript-compiler-options
-   */
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
     "baseUrl": ".",
@@ -12,7 +8,11 @@
     "sourceMap": true,
     "strict": true,
     "declaration": false,
-    "moduleResolution": "node",
+    // This CANNOT be "node" or tsc will not be able to resolve the declaration types specified
+    // under the `exports` field in the package.json files of dependent packages. A very annoying
+    // side-effect of this is that dts-bundle-generator will be unable to produce declaration types
+    // for @selectoroid/react-bootstrap and possibly other packages too.
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
@@ -30,6 +30,12 @@
     //   specific versions like "es2020" can be targeted for more conservative compatibility. Ensure
     //   that your development and production environments support these features, either natively
     //   or through polyfills and bundlers.
-    "lib": ["dom", "dom.iterable", "esnext"]
-  }
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "paths": {
+      "@selectoroid/model": ["packages/model/src/index.ts"],
+      "@selectoroid/react-core": ["packages/react-core/src/index.ts"],
+      "@selectoroid/react-bootstrap": ["packages/react-bootstrap/src/index.ts"]
+    }
+  },
+  "exclude": ["./storybook", "**/dist"]
 }
