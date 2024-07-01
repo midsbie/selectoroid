@@ -12,6 +12,7 @@ export interface Model {
 
   isSelected(value: OptionValue): boolean;
   getMaxDepth(): number;
+  isLeafDepth(depth: number): boolean;
   countSelections(option: Readonly<Option>): number;
   getFilteredOptions(): readonly Option[];
   getSelectedOptions(): readonly Option[];
@@ -54,6 +55,10 @@ export class AbstractModel {
     };
 
     return (this._maxDepth = determine([{ children: this.options }] as Option[]));
+  }
+
+  isLeafDepth(depth: number): boolean {
+    return depth + 1 >= this.getMaxDepth();
   }
 
   countSelections(option: Readonly<Option>): number {

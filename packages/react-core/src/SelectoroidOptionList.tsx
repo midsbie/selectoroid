@@ -24,9 +24,9 @@ export function SelectoroidOptionList({
 
   const handleMouseOver = React.useCallback(
     (ev: React.MouseEvent, opt: SelectedOption) => {
-      if (opt.children != null && opt.children.length > 0) onMouseOver(ev, opt);
+      if (!model.isLeafDepth(opt.depth)) onMouseOver(ev, opt);
     },
-    [onMouseOver],
+    [model, onMouseOver],
   );
 
   const nodes = options
