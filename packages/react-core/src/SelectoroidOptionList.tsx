@@ -46,6 +46,6 @@ export function SelectoroidOptionList({
     })
     .filter(Boolean);
 
-  if (nodes.length < 1) return <EmptyOptions />;
+  if (nodes.length < 1) return <EmptyOptions className="selectoroid-option-list" />;
   return <OptionsList className="selectoroid-option-list">{nodes} </OptionsList>;
 }

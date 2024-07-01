@@ -82,9 +82,15 @@ function Option({ isSelected, isExpanded, option, childSelectionCount, ...props 
   );
 }
 
-function EmptyOptions() {
+function EmptyOptions({ className, ...props }: RenderProps) {
   return (
-    <div className="d-flex justify-content-center align-items-center">
+    <div
+      className={classNames(
+        className,
+        "d-flex flex-fill justify-content-center align-items-center text-wrap",
+      )}
+      {...props}
+    >
       <div className="text-center text-muted">No options available</div>
     </div>
   );
