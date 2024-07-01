@@ -3,6 +3,7 @@ import { OverlayTrigger, OverlayTriggerProps, Popover, PopoverBody } from "react
 
 import { Context, MouseDownSink, SelectoroidMenu } from "@selectoroid/react-core";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface Props extends React.PropsWithChildren<OverlayTriggerProps> {}
 
 export function SelectoroidPopover({ children, ...props }: Props) {

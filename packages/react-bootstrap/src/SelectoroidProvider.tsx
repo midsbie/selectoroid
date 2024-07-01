@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import * as React from "react";
-import { Col, ListGroup, ListGroupItem, Row } from "react-bootstrap";
+import { ListGroup, ListGroupItem } from "react-bootstrap";
 
 import {
   ContextProps,
@@ -14,6 +14,7 @@ import {
 import { Badge } from "./Badge";
 import { ExpandedIcon } from "./ExpandedIcon";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface Props extends React.PropsWithChildren<ContextProps> {}
 
 export function SelectoroidProvider({
@@ -53,7 +54,6 @@ function Menu({ children, ...props }: RenderProps) {
   );
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 function OptionsList({ className, children, ...props }: RenderProps) {
   return (
     <div className={classNames(className, "flex-fill")} {...(props as any)}>
@@ -63,9 +63,7 @@ function OptionsList({ className, children, ...props }: RenderProps) {
     </div>
   );
 }
-/* eslint-enable @typescript-eslint/no-explicit-any */
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 function Option({ isSelected, isExpanded, option, childSelectionCount, ...props }: OptionProps) {
   return (
     <ListGroupItem
@@ -83,7 +81,6 @@ function Option({ isSelected, isExpanded, option, childSelectionCount, ...props 
     </ListGroupItem>
   );
 }
-/* eslint-enable @typescript-eslint/no-explicit-any */
 
 function EmptyOptions() {
   return (
