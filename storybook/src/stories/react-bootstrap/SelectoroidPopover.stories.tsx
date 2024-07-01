@@ -7,14 +7,14 @@ import {
   SelectoroidProvider,
 } from "@selectoroid/react-bootstrap";
 
-import { render } from "./render";
+import { renderPopover } from "./render";
 import "./style.scss";
 import { fruitOptions, regionOptions } from "./values";
 
 // More on how to set up stories at:
 // https://storybook.js.org/docs/writing-stories#default-export
 const meta: Meta<typeof SelectoroidProvider> = {
-  title: "Bootstrap Selectoroid",
+  title: "Selectoroid/React Bootstrap/Popover",
   component: SelectoroidProvider,
   subcomponents: [SelectoroidControl, SelectoroidPopover],
   parameters: {
@@ -48,7 +48,7 @@ export const Empty: Story = {
   args: {
     options: [],
   },
-  render,
+  render: renderPopover,
 };
 
 export const Options: Story = {
@@ -60,7 +60,7 @@ export const Options: Story = {
   args: {
     options: fruitOptions,
   },
-  render,
+  render: renderPopover,
 };
 
 export const OptionHierarchy: Story = {
@@ -72,5 +72,5 @@ export const OptionHierarchy: Story = {
   args: {
     options: regionOptions,
   },
-  render,
+  render: renderPopover,
 };
