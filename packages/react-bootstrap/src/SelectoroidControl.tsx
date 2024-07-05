@@ -10,6 +10,7 @@ type OmitProps = "value" | "onInputChange" | "onRemove" | "onClear";
 interface Props extends Omit<BaseProps, OmitProps> {
   ariaLabel?: string;
 }
+export { Props as SelectoroidControlProps };
 
 export function SelectoroidControl({
   ariaLabel,
@@ -26,6 +27,7 @@ export function SelectoroidControl({
     return () => {
       clearTimeout(timeoutId);
     };
+    // eslint-disable-next-line
   }, [isFocused]);
 
   const handleInputChange = React.useCallback(
@@ -34,7 +36,7 @@ export function SelectoroidControl({
       setFilter(nextFilter);
       return false;
     },
-    [setFilter],
+    [setOpen, setFilter],
   );
 
   const handleRemove = React.useCallback(
