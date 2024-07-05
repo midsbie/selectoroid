@@ -4,6 +4,7 @@ import * as React from "react";
 import { OptionValue } from "@selectoroid/model";
 import {
   SelectoroidControl,
+  SelectoroidControlProps,
   SelectoroidDropdown,
   SelectoroidPopover,
   SelectoroidProvider,
@@ -12,19 +13,17 @@ import { ChangeContext, ContextProps } from "@selectoroid/react-core";
 
 import { Container } from "./Container";
 
-export function renderPopover({
-  ariaLabel,
-  placeholder,
-  multiple,
-  options,
-  value,
-  onChange,
-}: ContextProps) {
+type RenderProps = ContextProps & SelectoroidControlProps;
+
+export function renderPopover({ ariaLabel, placeholder, multiple, options, value }: RenderProps) {
   const [, setArgs] = useArgs();
 
-  const handleChange = React.useCallback((next: readonly OptionValue[], context: ChangeContext) => {
-    setArgs({ value: next });
-  }, []);
+  const handleChange = React.useCallback(
+    (next: readonly OptionValue[], _context: ChangeContext) => {
+      setArgs({ value: next });
+    },
+    [],
+  );
 
   return (
     <Container>
@@ -42,19 +41,15 @@ export function renderPopover({
   );
 }
 
-export function renderDropdown({
-  ariaLabel,
-  placeholder,
-  multiple,
-  options,
-  value,
-  onChange,
-}: ContextProps) {
+export function renderDropdown({ ariaLabel, placeholder, multiple, options, value }: RenderProps) {
   const [, setArgs] = useArgs();
 
-  const handleChange = React.useCallback((next: readonly OptionValue[], context: ChangeContext) => {
-    setArgs({ value: next });
-  }, []);
+  const handleChange = React.useCallback(
+    (next: readonly OptionValue[], _context: ChangeContext) => {
+      setArgs({ value: next });
+    },
+    [],
+  );
 
   return (
     <Container>
