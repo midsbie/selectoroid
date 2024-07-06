@@ -1,7 +1,7 @@
 {
   "name": "@selectoroid",
   "private": true,
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Easy navigation through nested categories and sub-categories, offering users a clear and intuitive interface for complex selections.",
   "author": "Miguel Guedes <miguel@softgeist.com>",
   "license": "MIT",
