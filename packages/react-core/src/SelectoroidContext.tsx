@@ -6,6 +6,7 @@ import { Context, ContextProps, ContextValue } from "./context";
 import { filterByLabelSubstring } from "./functions";
 import { defaultComponents } from "./rendering";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface Props extends React.PropsWithChildren<ContextProps> {}
 
 export function SelectoroidContext({
@@ -36,6 +37,7 @@ export function SelectoroidContext({
     const isValueArray =
       Array.isArray(value) && Object.prototype.toString.call(value) === "[object Array]";
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     !isValueArray &&
       process.env.NODE_ENV === "development" &&
       console.warn("The 'value' prop is not an array.");

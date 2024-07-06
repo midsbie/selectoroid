@@ -8,4 +8,3 @@ export * from "./Selectoroid";
 export * from "./SelectoroidContext";
 export * from "./SelectoroidMenu";
 export * from "./SelectoroidOptionList";
-

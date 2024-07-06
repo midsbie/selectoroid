@@ -5,7 +5,7 @@ import {
   Option,
   OptionValue,
   SelectedOption,
-  defaultModelConstructor,
+  type defaultModelConstructor,
 } from "@selectoroid/model";
 
 import { FilterFuncFactory } from "./functions";
@@ -25,6 +25,7 @@ interface ChangeContextClear {
 }
 
 export type ChangeContext = ChangeContextAdd | ChangeContextRemove | ChangeContextClear;
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface RenderProps extends React.AllHTMLAttributes<unknown> {}
 
 export interface OptionProps extends RenderProps {

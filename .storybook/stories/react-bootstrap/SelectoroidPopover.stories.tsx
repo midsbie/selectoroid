@@ -47,6 +47,5 @@ export {
   OptionHierarchy,
   OptionHierarchyWithMultipleSelection,
   Options,
-  OptionsWithMultipleSelection
+  OptionsWithMultipleSelection,
 };
-
