@@ -8,17 +8,23 @@
     "dist"
   ],
   "author": "Miguel Guedes <miguel@softgeist.com>",
-  "peerDependencies": {
-    "bootstrap": "^5.3.3",
-    "react": "^18",
-    "react-bootstrap": "^2",
-    "react-bootstrap-icons": "^1"
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "types": "./dist/index.d.ts"
+    }
   },
   "dependencies": {
     "@selectoroid/model": "^0",
     "@selectoroid/react-core": "^0",
     "@taglicious/react-bootstrap": "^1.1.0-alpha.0",
     "classnames": "^2.5.1"
+  },
+  "peerDependencies": {
+    "bootstrap": "^5.3.3",
+    "react": "^18",
+    "react-bootstrap": "^2",
+    "react-bootstrap-icons": "^1"
   },
   "devDependencies": {
     "@types/react": "^18",
