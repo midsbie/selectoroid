@@ -15,7 +15,7 @@
   "dependencies": {
     "@selectoroid/model": "1.0.0-alpha.0",
     "@selectoroid/react-core": "1.0.0-alpha.0",
-    "@taglicious/react-bootstrap": "^1.2.3-alpha.0",
+    "@taglicious/react-bootstrap": "^1.2.3-alpha.1",
     "classnames": "^2.5.1"
   },
   "peerDependencies": {
