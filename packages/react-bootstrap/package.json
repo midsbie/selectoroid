@@ -1,7 +1,7 @@
 {
   "name": "@selectoroid/react-bootstrap",
   "author": "Miguel Guedes <miguel@softgeist.com>",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.esm.js",
@@ -13,8 +13,8 @@
     }
   },
   "dependencies": {
-    "@selectoroid/model": "1.0.0-alpha.0",
-    "@selectoroid/react-core": "1.0.0-alpha.0",
+    "@selectoroid/model": "1.0.0-alpha.1",
+    "@selectoroid/react-core": "1.0.0-alpha.1",
     "@taglicious/react-bootstrap": "^1.2.3-alpha.1",
     "classnames": "^2.5.1"
   },
