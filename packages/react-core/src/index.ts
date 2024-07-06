@@ -1,5 +1,3 @@
-import "../../../types/index.d.ts";
-
 export * from "./context";
 export * from "./rendering";
 
