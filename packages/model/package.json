@@ -1,9 +1,11 @@
 {
   "name": "@selectoroid/model",
+  "author": "Miguel Guedes <miguel@softgeist.com>",
   "version": "0.0.1",
   "license": "MIT",
-  "main": "src/index.ts",
   "type": "module",
+  "main": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.esm.js",
@@ -14,8 +16,7 @@
     "LICENSE",
     "dist"
   ],
-  "author": "Miguel Guedes <miguel@softgeist.com>",
-  "peerDependencies": {
-    "react": "^18"
+  "publishConfig": {
+    "access": "public"
   }
 }
