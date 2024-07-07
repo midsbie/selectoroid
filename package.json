@@ -19,6 +19,7 @@
     "clean": "rm -rf packages/*/dist",
     "clean:full": "npm run clean && rm -rf node_modules packages/*/node_modules",
     "build": "npm exec --ws -- devout build",
+    "postpublish": "npm exec --ws -- git checkout package.json",
     "start:storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",
     "lint": "tsc --noEmit && eslint . && prettier --check .",
