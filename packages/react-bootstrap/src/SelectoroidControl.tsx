@@ -10,7 +10,7 @@ type OmitProps = "value" | "onInputChange" | "onRemove" | "onClear";
 interface Props extends Omit<BaseProps, OmitProps> {
   ariaLabel?: string;
 }
-export { Props as SelectoroidControlProps };
+export type { Props as SelectoroidControlProps };
 
 export function SelectoroidControl({
   ariaLabel,
