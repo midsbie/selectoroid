@@ -17,18 +17,8 @@ export function SelectoroidControl({
   placeholder = "Please select...",
   ...props
 }: Props) {
-  const { isFocused, isMultiple, model, setOpen, toggleOpen, setFilter, onChange } =
-    React.useContext(Context);
+  const { isFocused, isMultiple, model, setOpen, setFilter, onChange } = React.useContext(Context);
   const tags = model.getSelectedOptions();
-
-  React.useEffect(() => {
-    const timeoutId = setTimeout(() => setOpen(isFocused), 100);
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-    // eslint-disable-next-line
-  }, [isFocused]);
 
   const handleInputChange = React.useCallback(
     (nextFilter: string) => {
@@ -36,7 +26,7 @@ export function SelectoroidControl({
       setFilter(nextFilter);
       return false;
     },
-    [setOpen, setFilter],
+    [setOpen, setFilter]
   );
 
   const handleRemove = React.useCallback(
@@ -44,7 +34,7 @@ export function SelectoroidControl({
       const [next, ok] = model.remove(option);
       if (ok) onChange(next, { type: "remove", option });
     },
-    [model, onChange],
+    [model, onChange]
   );
 
   const handleClear = React.useCallback(
@@ -52,7 +42,7 @@ export function SelectoroidControl({
       ev?.stopPropagation();
       onChange([], { type: "clear" });
     },
-    [onChange],
+    [onChange]
   );
 
   let widget;
@@ -85,9 +75,5 @@ export function SelectoroidControl({
     );
   }
 
-  return (
-    <div className={"selectoroid-control"} onClick={toggleOpen}>
-      {widget}
-    </div>
-  );
+  return <div className={"selectoroid-control"}>{widget}</div>;
 }

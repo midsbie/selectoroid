@@ -6,6 +6,8 @@ import { Context, ContextProps, ContextValue } from "./context";
 import { filterByLabelSubstring } from "./functions";
 import { defaultComponents } from "./rendering";
 
+const FOCUS_EVENT_DEBOUNCE_MS = 250;
+
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface Props extends React.PropsWithChildren<ContextProps> {}
 
@@ -21,13 +23,22 @@ export function SelectoroidContext({
 }: Props) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isFocused, setIsFocused] = React.useState(false);
+  // Tracks the timestamp of the last focus-related event to prevent a race condition.  A focusin
+  // event followed by a click event can cause unintended toggling of `isOpen`.  If the time since
+  // the last focus event is < FOCUS_EVENT_DEBOUNCE_MS, `toggleOpen` avoids toggling.
+  const lastFocusEventTimeRef = React.useRef<number>(0);
   const [filter, setFilter] = React.useState("");
-  const setOpen = React.useCallback((next: boolean = true) => setIsOpen(next), []);
-  const setFocused = React.useCallback((next: boolean = true) => setIsFocused(next), []);
 
-  React.useEffect(() => {
-    if (!isFocused) setIsOpen(false);
-  }, [isFocused]);
+  const setOpen = React.useCallback((next: boolean = true) => {
+    setIsOpen(next);
+  }, []);
+
+  const setFocused = React.useCallback((next: boolean = true) => {
+    setIsFocused(next);
+
+    lastFocusEventTimeRef.current = Date.now();
+    setIsOpen(next);
+  }, []);
 
   const ctx = React.useMemo<ContextValue>(() => {
     // First, we use `Array.isArray` for performance in the majority of cases where `value` is in
@@ -56,7 +67,11 @@ export function SelectoroidContext({
       onChange,
       isOpen,
       setOpen,
-      toggleOpen: () => setIsOpen((o) => !o),
+      toggleOpen: () => {
+        setIsOpen((o) =>
+          Date.now() - lastFocusEventTimeRef.current < FOCUS_EVENT_DEBOUNCE_MS ? o : !o,
+        );
+      },
       isFocused,
       setFocused,
       components,
