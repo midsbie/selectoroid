@@ -32,12 +32,14 @@ export function FocusManager({ children }: React.PropsWithChildren) {
     if (parentRef.current && parentRef.current.contains(event.target as Node | null)) {
       if (!isFocusedRef.current) setFocused(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleFocusOut = React.useCallback((event: FocusEvent) => {
     if (parentRef.current && !parentRef.current.contains(event.relatedTarget as Node | null)) {
       if (isFocusedRef.current) setFocused(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleClick = React.useCallback(
@@ -66,7 +68,7 @@ export function FocusManager({ children }: React.PropsWithChildren) {
       parentElement.removeEventListener("focusin", handleFocusIn);
       parentElement.removeEventListener("focusout", handleFocusOut);
     };
-  }, []);
+  }, [handleFocusIn, handleFocusOut]);
 
   return (
     <div ref={parentRef} tabIndex={-1} onClick={handleClick}>
