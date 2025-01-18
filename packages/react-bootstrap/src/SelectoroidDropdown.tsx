@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Dropdown } from "react-bootstrap";
 
-import { Context, MouseDownSink, SelectoroidMenu } from "@selectoroid/react-core";
+import { ClickEventBoundary, Context, SelectoroidMenu } from "@selectoroid/react-core";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface Props extends React.PropsWithChildren {}
@@ -13,11 +13,11 @@ export function SelectoroidDropdown({ children }: Props) {
     <Dropdown show={isFocused && isOpen} className="selectoroid-picker">
       {children}
 
-      <Dropdown.Menu className="selectoroid-picker-dropdown w-100">
-        <MouseDownSink>
+      <ClickEventBoundary>
+        <Dropdown.Menu className="selectoroid-picker-dropdown w-100">
           <SelectoroidMenu />
-        </MouseDownSink>
-      </Dropdown.Menu>
+        </Dropdown.Menu>
+      </ClickEventBoundary>
     </Dropdown>
   );
 }

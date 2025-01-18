@@ -17,18 +17,8 @@ export function SelectoroidControl({
   placeholder = "Please select...",
   ...props
 }: Props) {
-  const { isFocused, isMultiple, model, setOpen, toggleOpen, setFilter, onChange } =
-    React.useContext(Context);
+  const { isFocused, isMultiple, model, setOpen, setFilter, onChange } = React.useContext(Context);
   const tags = model.getSelectedOptions();
-
-  React.useEffect(() => {
-    const timeoutId = setTimeout(() => setOpen(isFocused), 100);
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-    // eslint-disable-next-line
-  }, [isFocused]);
 
   const handleInputChange = React.useCallback(
     (nextFilter: string) => {
@@ -85,9 +75,5 @@ export function SelectoroidControl({
     );
   }
 
-  return (
-    <div className={"selectoroid-control"} onClick={toggleOpen}>
-      {widget}
-    </div>
-  );
+  return <div className={"selectoroid-control"}>{widget}</div>;
 }
