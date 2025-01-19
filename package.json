@@ -1,5 +1,5 @@
 {
-  "name": "@selectoroid",
+  "name": "selectoroid",
   "private": true,
   "version": "1.0.0",
   "description": "Easy navigation through nested categories and sub-categories, offering users a clear and intuitive interface for complex selections.",
