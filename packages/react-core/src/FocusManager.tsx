@@ -17,7 +17,7 @@ import { Context } from "./context";
  */
 export function FocusManager({ children }: React.PropsWithChildren) {
   const parentRef = React.useRef<HTMLDivElement>(null);
-  const { isFocused, setFocused, toggleOpen } = React.useContext(Context);
+  const { isFocused, setFocused } = React.useContext(Context);
 
   // We need a ref to track the latest focus state because the event listener callbacks are only
   // created once (due to empty dependency array in useEffect).  Without this ref, they would
@@ -42,15 +42,6 @@ export function FocusManager({ children }: React.PropsWithChildren) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleClick = React.useCallback(
-    (event: React.MouseEvent) => {
-      if (parentRef.current && parentRef.current.contains(event.target as Node | null)) {
-        toggleOpen();
-      }
-    },
-    [toggleOpen],
-  );
-
   // Set up native DOM event listeners for focusin/focusout.  We use these instead of React's
   // synthetic events because:
   //
@@ -71,7 +62,7 @@ export function FocusManager({ children }: React.PropsWithChildren) {
   }, [handleFocusIn, handleFocusOut]);
 
   return (
-    <div ref={parentRef} tabIndex={-1} onClick={handleClick}>
+    <div ref={parentRef} tabIndex={-1}>
       {children}
     </div>
   );

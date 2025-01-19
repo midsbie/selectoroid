@@ -17,7 +17,8 @@ export function SelectoroidControl({
   placeholder = "Please select...",
   ...props
 }: Props) {
-  const { isFocused, isMultiple, model, setOpen, setFilter, onChange } = React.useContext(Context);
+  const { isFocused, isMultiple, model, setOpen, setFilter, toggleOpen, onChange } =
+    React.useContext(Context);
   const tags = model.getSelectedOptions();
 
   const handleInputChange = React.useCallback(
@@ -75,5 +76,9 @@ export function SelectoroidControl({
     );
   }
 
-  return <div className={"selectoroid-control"}>{widget}</div>;
+  return (
+    <div className={"selectoroid-control"} onClick={toggleOpen}>
+      {widget}
+    </div>
+  );
 }
