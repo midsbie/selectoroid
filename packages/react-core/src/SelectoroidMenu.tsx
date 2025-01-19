@@ -35,22 +35,28 @@ export function SelectoroidMenu() {
     [setExpanded],
   );
 
-  const body: React.ReactNode[] = [];
-  let topt = model.getFilteredOptions();
-  for (let i = 0; i < model.getMaxDepth(); ++i) {
-    body.push(
-      <SelectoroidOptionList
-        key={`option-list-${i}`}
-        depth={i}
-        expandedOption={expanded[i]}
-        options={topt}
-        onClick={handleClick}
-        onMouseOver={(_ev, opt) => handleSetActive(i, opt)}
-      />,
-    );
+  // Form with function required to resolve several react-hooks/rules-of-hooks errors that are
+  // produced when a straight for-loop is used instead.
+  function renderOptions() {
+    const body: React.ReactNode[] = [];
+    let topt = model.getFilteredOptions();
+    for (let i = 0; i < model.getMaxDepth(); ++i) {
+      body.push(
+        <SelectoroidOptionList
+          key={`option-list-${i}`}
+          depth={i}
+          expandedOption={expanded[i]}
+          options={topt}
+          onClick={handleClick}
+          onMouseOver={(_ev, opt) => handleSetActive(i, opt)}
+        />,
+      );
 
-    topt = model.getOptionLeaf(topt, expanded[i]);
+      topt = model.getOptionLeaf(topt, expanded[i]);
+    }
+
+    return body;
   }
 
-  return <Menu className="selectoroid-menu">{body}</Menu>;
+  return <Menu className="selectoroid-menu">{renderOptions()}</Menu>;
 }
