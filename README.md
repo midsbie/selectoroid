@@ -60,7 +60,7 @@ Render the `Selectoroid` component with your options and selection handler:
 
 ## Building Artifacts & Publishing to NPM
 
-Follow these steps to build the Selectoroid artifacts and publish the library to NPM. All commands
+Follow these steps to build the Selectoroid artifacts and publish the libraries to NPM. All commands
 should be executed from the repository's root directory:
 
 1.  Run the linter to ensure there are no warnings or errors. Address any issues before proceeding:
