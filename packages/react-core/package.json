@@ -1,7 +1,7 @@
 {
   "name": "@selectoroid/react-core",
   "author": "Miguel Guedes <miguel@softgeist.com>",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "main": "./src/index.ts",
@@ -10,7 +10,7 @@
     "prepack": "devout prepare"
   },
   "dependencies": {
-    "@selectoroid/model": "1.0.0-alpha.3"
+    "@selectoroid/model": "1.0.0"
   },
   "peerDependencies": {
     "react": "^18"
