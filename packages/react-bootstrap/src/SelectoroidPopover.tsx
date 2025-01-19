@@ -6,7 +6,7 @@ import { ClickEventBoundary, Context, SelectoroidMenu } from "@selectoroid/react
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface Props extends React.PropsWithChildren<Omit<OverlayTriggerProps, "overlay">> {}
 
-export function SelectoroidPopover({ children, ...props }: Props): JSX.Element {
+export function SelectoroidPopover({ children, ...props }: Props): React.JSX.Element {
   const { isFocused, isOpen } = React.useContext(Context);
   return (
     <div className="selectoroid-picker">
