@@ -36,6 +36,18 @@
     //
     //   23 type StringComponent = Extract<keyof JSX.IntrinsicElements, ElementType extends never ? string : ElementType>;
     "types": ["@types/react", "@types/node"],
+    // Unfortunately, react-bootstrap errors out with the following error:
+    //   node_modules/react-bootstrap/esm/Navbar.d.ts:4:18 - error TS2430: Interface 'NavbarProps' incorrectly extends interface 'Omit<HTMLAttributes<HTMLElement>, "onSelect">'.
+    //     Types of property 'onToggle' are incompatible.
+    //       Type '((expanded: boolean) => void) | undefined' is not assignable to type 'ToggleEventHandler<HTMLElement> | undefined'.
+    //         Type '(expanded: boolean) => void' is not assignable to type 'ToggleEventHandler<HTMLElement>'.
+    //           Types of parameters 'expanded' and 'event' are incompatible.
+    //             Type 'ToggleEvent<HTMLElement>' is not assignable to type 'boolean'.
+    //
+    //   4 export interface NavbarProps extends BsPrefixProps, Omit<React.HTMLAttributes<HTMLElement>, 'onSelect'> {
+    //
+    // The only solution I found was to skip the lib check. This is not ideal, but it works.
+    "skipLibCheck": true,
     "paths": {
       "@selectoroid/model": ["packages/model/src/index.ts"],
       "@selectoroid/react-core": ["packages/react-core/src/index.ts"],
