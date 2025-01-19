@@ -10,7 +10,7 @@
     "prepack": "devout prepare"
   },
   "dependencies": {
-    "@selectoroid/model": "1.0.0"
+    "@selectoroid/model": "^1.0.0"
   },
   "peerDependencies": {
     "react": "^19"
