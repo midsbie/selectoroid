@@ -1,7 +1,7 @@
 {
   "name": "@selectoroid/react-bootstrap",
   "author": "Miguel Guedes <miguel@softgeist.com>",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "MIT",
   "type": "module",
   "main": "./src/index.ts",
@@ -10,9 +10,9 @@
     "prepack": "devout prepare"
   },
   "dependencies": {
-    "@selectoroid/model": "^1.0.0",
-    "@selectoroid/react-core": "^1.0.0",
-    "@taglicious/react-bootstrap": "^1.5.0",
+    "@selectoroid/model": "^1.1.1",
+    "@selectoroid/react-core": "^1.1.1",
+    "@taglicious/react-bootstrap": "^1.5.1",
     "classnames": "^2.5.1"
   },
   "peerDependencies": {
