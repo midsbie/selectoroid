@@ -17,7 +17,7 @@
   },
   "peerDependencies": {
     "bootstrap": "^5",
-    "react": "^19",
+    "react": ">=16.8.0 <20.0.0",
     "react-bootstrap": "^2",
     "react-bootstrap-icons": "^1"
   },
